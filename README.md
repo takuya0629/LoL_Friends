@@ -1,6 +1,6 @@
 # README
 
-# leagueoflegendのコミュニティサイト
+# League of Legendのコミュニティサイト
 
 # 概要
 LOLのアカウントと連動したSNSです。
