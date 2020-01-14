@@ -40,5 +40,3 @@ https://cacoo.com/diagrams/F7cmNyrqvGdq38g4/873A3
 - carrierwave
 - mini_magick
 - devise
-
-# カタログ
