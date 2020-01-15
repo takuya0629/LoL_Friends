@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   registrations: 'users/registrations'
   }
 
-  # devise_scope :user do
-  # get "user/:id", :to => "users/registrations#detail"
+  devise_scope :user do
+    get "user/:id", :to => "users/registrations#detail"
   # get "signup", :to => "users/registrations#new"
   # get "login", :to => "users/sessions#new"
   # get "logout", :to => "users/sessions#destroy"
-  # end
+  end
+
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
