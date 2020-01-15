@@ -36,6 +36,9 @@ https://cacoo.com/diagrams/JledUeHDi14pE0If/BA761
 # 画面ワイヤフレーム
 https://cacoo.com/diagrams/F7cmNyrqvGdq38g4/873A3
 
+# ER図
+https://cacoo.com/diagrams/JCloTT1Ttp59yc8W/EB842
+
 # 使用予定Gem
 - carrierwave
 - mini_magick
