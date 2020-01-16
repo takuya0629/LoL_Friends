@@ -1,1 +1,8 @@
 <h1>aaaa</h1>
+
+<% if @user.favorite_summoner.present? %>
+  <%= @summoner_data[0]['tier'] %>
+  <%= @user.favorite_summoner %>
+  <%= @summoner_main_data['name']%>
+<% end %>
+
