@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  @@api = 'RGAPI-690493b0-2cdd-45aa-90ea-9455e740ef41'
+  @@api = 'RGAPI-2adc64b0-b1d7-4f1d-93d8-38ba6233249d'
   
   # このアクションを追加
   def after_sign_in_path_for(resource)

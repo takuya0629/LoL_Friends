@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_102353) do
+ActiveRecord::Schema.define(version: 2020_01_16_051148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "group_name"
+    t.text "introduction"
+    t.integer "group_owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "join_groups", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_join_groups_on_group_id"
+    t.index ["user_id"], name: "index_join_groups_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,7 +50,6 @@ ActiveRecord::Schema.define(version: 2020_01_15_102353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "summoner_name"
-    t.integer "group_id"
     t.boolean "admin", default: false, null: false
     t.string "name", null: false
     t.string "favorite_summoner"
@@ -44,4 +60,6 @@ ActiveRecord::Schema.define(version: 2020_01_15_102353) do
     t.index ["summoner_name"], name: "index_users_on_summoner_name", unique: true
   end
 
+  add_foreign_key "join_groups", "groups"
+  add_foreign_key "join_groups", "users"
 end
