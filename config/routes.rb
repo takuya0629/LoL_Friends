@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   registrations: 'users/registrations'
   }
 
+  resources :groups do 
+    member do
+      patch 'change_approve_system'
+    end
+  end
+  resources :join_groups 
+
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"
   # get "signup", :to => "users/registrations#new"

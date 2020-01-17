@@ -1,9 +1,10 @@
 class CreateGroups < ActiveRecord::Migration[5.2]
   def change
     create_table :groups do |t|
-      t.string :group_name, nul: false
+      t.string :name, nul: false
       t.text :introduction
-      t.integer :group_owner_id, nul: false
+      t.integer :owner_id, nul: false
+      t.boolean :approval_system, default: false
       t.timestamps
     end
   end

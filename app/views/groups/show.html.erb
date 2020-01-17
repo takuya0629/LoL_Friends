@@ -1,0 +1,26 @@
+
+<p>このグループの名前：<%= @group.name %></p>
+
+<br>
+<p>おーなー：<%= @group.owner.name %></p>
+
+<br>
+<% @group.join_group_users.each do |a| %>
+  <%= "めんばー:#{a.name}" %>
+  <br>
+<% end %>
+
+<br>
+<% unless @group.join_group_users.find_by(id: current_user.id) %>
+  <%= link_to '参加する', join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
+<% end %>
+
+<% if @group.approval_system == true %>
+  <p><%= "このグループへの参加は許可制です" %></p>
+<% else %>
+  <p><%= "このグループへの参加は自由です" %></p>
+<% end %>
+
+<% if current_user == @group.owner %>
+    <%= link_to '承認設定をかえる', change_approve_system_group_path(group_id: @group.id), method: :patch %>
+  <% end %>
