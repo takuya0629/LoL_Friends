@@ -3,17 +3,15 @@ class JoinGroupsController < ApplicationController
   before_action :set_group
 
   def create
-    if @group.approve == 'true'
-      JoinGroupMailer.join_group_mail(@group.owner.email, current_user.name).deliver
-      redirect_to @group, notice: '加入申請が完了しました。'
-    elsif @group.join_group_users.find_by(id: current_user.id)
+    if @group.join_group_users.find_by(id: current_user.id)
       redirect_to @group, notice: 'あなたは参加済です'
-    else
+
+    elsif @group.approval_system == false
       @group.join_groups.create(user_id: current_user.id)
       redirect_to @group, notice: 'グループへ参加しました'
     end
   end
-
+  
   private
 
   def set_group

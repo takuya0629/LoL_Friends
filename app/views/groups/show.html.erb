@@ -12,8 +12,18 @@
 
 <br>
 <% unless @group.join_group_users.find_by(id: current_user.id) %>
-  <%= link_to '参加する', join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
+    
+  <% if @group.approval_system == true %>
+    <p><%= "このグループへの参加は許可制です" %></p>
+    <%= link_to '加入申請をする', judgements_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
+  <% else %>
+    <p><%= "このグループへの参加は自由です" %></p>
+    <%= link_to '参加する', join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
+  <% end %>
 <% end %>
+
+
+
 
 <% if @group.approval_system == true %>
   <p><%= "このグループへの参加は許可制です" %></p>
@@ -22,5 +32,5 @@
 <% end %>
 
 <% if current_user == @group.owner %>
-    <%= link_to '承認設定をかえる', change_approve_system_group_path(group_id: @group.id), method: :patch %>
+    <%= link_to '承認設定をかえる', change_approval_system_group_path(group_id: @group.id), method: :patch %>
   <% end %>

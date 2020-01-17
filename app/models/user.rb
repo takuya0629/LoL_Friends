@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :join_groups, dependent: :destroy
   has_many :users_in_groups, through: :join_groups, source: :group
   has_many :groups, foreign_key: :owner_id
+  has_many :judgements, dependent: :destroy
 
   validates :name, presence: :true, uniqueness: { case_sensitive: false }
   # Include default devise modules. Others available are:

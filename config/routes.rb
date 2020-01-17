@@ -7,10 +7,14 @@ Rails.application.routes.draw do
 
   resources :groups do 
     member do
-      patch 'change_approve_system'
+      patch 'change_approval_system'
     end
   end
-  resources :join_groups 
+  resources :join_groups
+
+  resources :judgements, only: :create do 
+    get :join_group_permission, on: :member
+  end 
 
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"

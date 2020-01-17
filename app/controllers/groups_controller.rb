@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[show edit update destroy change_approve_system]
+  before_action :set_group, only: %i[show edit update destroy change_approval_system]
 
   def new
     @group = Group.new
@@ -48,7 +48,7 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: '投稿を削除しました' 
   end
 
-  def change_approve_system
+  def change_approval_system
     if @group.approval_system == true
       @group.update(approval_system: 'false')
       redirect_to @group, notice: 'このグループへの参加が自由になりました。'
