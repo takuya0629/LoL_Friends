@@ -4,6 +4,9 @@
 <% if @mymails.present? %>
   <% @mymails.each do |m| %>
     <%= link_to "#{m.target_user(current_user).name}さんとの会話", conversations_path(sender_id: current_user.id, recipient_id: m.target_user(current_user).id), method: :post %>
+    <% if @mail.where(conversation_id: m.id).present? %>
+      <%= @mail.where(conversation_id: m.id).last.body %>
+    <% end %>
+    <br>
   <% end %>
 <% end %>
-
