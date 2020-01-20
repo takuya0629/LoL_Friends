@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
   end
 
   def mail_box
-    @mymail = Conversation.where(sender_id: current_user).or(Conversation.where(recipient_id: current_user))
+    @mymails = Conversation.where(sender_id: current_user).or(Conversation.where(recipient_id: current_user))
   end
 
 

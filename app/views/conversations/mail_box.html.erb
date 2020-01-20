@@ -1,15 +1,9 @@
 <%= "#{current_user.name}さんのメールボックス" %>
 <br><br>
 
-<% if @mymail.present? %>
-  <% @mymail.each do |m| %>
-    <% if m.sender.id != current_user.id %>
-      <%= "#{m.sender.name}さんとの会話" %>
-      <br>
-      <% else %>
-      <%= "#{m.recipient.name}さんとの会話" %>
-      <br>
-      <% end %>
-    <% end %>
+<% if @mymails.present? %>
+  <% @mymails.each do |m| %>
+    <%= link_to "#{m.target_user(current_user).name}さんとの会話", conversations_path(sender_id: current_user.id, recipient_id: m.target_user(current_user).id), method: :post %>
   <% end %>
+<% end %>
 
