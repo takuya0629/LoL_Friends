@@ -1,0 +1,5 @@
+<% if @group.join_groups.find_by(user_id: @user.id).present? %>
+  <%= "#{@user.name}さん#{@group.name}への参加が許可されました！" %>
+<% else %>
+  <%= "#{@user.name}さん#{@group.name}への参加は許可されませんでした・・・。" %> 
+<% end %>

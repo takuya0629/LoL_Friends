@@ -1,0 +1,15 @@
+<%= "#{current_user.name}さんのメールボックス" %>
+<br><br>
+
+<% if @mymail.present? %>
+  <% @mymail.each do |m| %>
+    <% if m.sender.id != current_user.id %>
+      <%= "#{m.sender.name}さんとの会話" %>
+      <br>
+      <% else %>
+      <%= "#{m.recipient.name}さんとの会話" %>
+      <br>
+      <% end %>
+    <% end %>
+  <% end %>
+

@@ -1,4 +1,5 @@
-<h1>aaaa</h1>
+<%= "名前：#{@user.name}" %>
+<br>
 
 <% if @user.favorite_summoner.present? %>
   <%= @summoner_data[0]['tier'] %>
@@ -6,3 +7,12 @@
   <%= @summoner_main_data['name']%>
 <% end %>
 
+<% if @user.id != current_user.id %>
+    <div class="item">
+      <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
+    </div>
+  <!-- <li><%#= render 'follow_form', user: user %></li> --> <!-- フォロー機能が実装されて入ればこの一文も必要 -->
+<% end %>
+
+
+<%= link_to 'メールボックス', mail_box_conversation_path %>

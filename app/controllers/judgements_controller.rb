@@ -15,11 +15,19 @@ class JudgementsController < ApplicationController
   def join_group_permission
     @group = Judgement.find(params[:id]).group
     @group.join_groups.create(user_id: Judgement.find(params[:id]).user_id)
-    redirect_to @group, notice: '加入を許可しました。'
+    redirect_to @group, notice: '加入を許可しました'
+
+    JoinGroupJudgmentMailer.join_group_judgment_mail(@user, @group).deliver
+    Judgement.find(params[:id]).destroy
   end
 
   def join_group_deny
+    @user = Judgement.find(params[:id]).user
+    @group = Judgement.find(params[:id]).group
+    redirect_to @group, notice: '参加をお断りしました'
 
+    JoinGroupJudgmentMailer.join_group_judgment_mail(@user, @group).deliver
+    Judgement.find(params[:id]).destroy
   end
 
   private

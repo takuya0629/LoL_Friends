@@ -1,7 +1,8 @@
 <h1><%= "#{@user.name}さんから加入申請がとどきました" %></h1>
 
 <br>
-<p>参加を許可する場合はこちら</p>
 
 <%= link_to '参加を許可する場合はこちら', join_group_permission_judgement_url(@id) %>
+
+<%= link_to '参加を断る場合はこちら', join_group_deny_judgement_url(@id) %>
 

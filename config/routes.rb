@@ -12,8 +12,14 @@ Rails.application.routes.draw do
   end
   resources :join_groups
 
+  resources :conversations do
+    get :mail_box, on: :member
+    resources :messages
+  end
+
   resources :judgements, only: :create do 
     get :join_group_permission, on: :member
+    get :join_group_deny, on: :member
   end 
 
   devise_scope :user do
