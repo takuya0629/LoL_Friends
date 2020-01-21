@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   # get "logout", :to => "users/sessions#destroy"
   end
 
+  resources :relationships, only: [:create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

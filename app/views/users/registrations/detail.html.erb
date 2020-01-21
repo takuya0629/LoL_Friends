@@ -11,7 +11,7 @@
     <div class="item">
       <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
     </div>
-  <!-- <li><%#= render 'follow_form', user: user %></li> --> <!-- フォロー機能が実装されて入ればこの一文も必要 -->
+  <li><%= render 'follow_form', user: @user %></li>
 <% end %>
 
 
