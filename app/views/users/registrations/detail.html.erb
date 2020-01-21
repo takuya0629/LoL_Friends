@@ -8,11 +8,10 @@
 <% end %>
 
 <% if @user.id != current_user.id %>
-    <div class="item">
-      <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
-    </div>
-  <li><%= render 'follow_form', user: @user %></li>
+  <div class="item">
+    <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
+  </div>
+  <%= render 'follow_form', user: @user %>
+<% else %>
+  <%= link_to 'メールボックス', mail_box_conversation_path %>
 <% end %>
-
-
-<%= link_to 'メールボックス', mail_box_conversation_path %>
