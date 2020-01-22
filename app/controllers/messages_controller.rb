@@ -9,6 +9,8 @@ class MessagesController < ApplicationController
     # このような記載にしていますが、実戦で用いるのには少々冗長なコードとなっているので
     # 余力のある人はコードのリファクタリングにも挑戦してみましょう！
     @messages = @conversation.messages
+    gon.current_user = current_user
+    gon.conversation = @conversation
 
     if @messages.length > 10
       @over_ten = true
