@@ -14,6 +14,7 @@ class JudgementsController < ApplicationController
 
   def join_group_permission
     @group = Judgement.find(params[:id]).group
+    @user = Judgement.find(params[:id]).user
     @group.join_groups.create(user_id: Judgement.find(params[:id]).user_id)
     redirect_to @group, notice: '加入を許可しました'
 

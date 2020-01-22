@@ -2,33 +2,17 @@
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
 
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body.present? %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= message.user.name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %> /
-              <% if message.user == current_user %>
-                <%= message.read ? '既読' : '未読' %>
-              <% end %>  
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<div class="container">
+  <h1>chat room</h1>
+  <form class='form-inline'>
+    <div class='form-group'>
+      <input type="text" class="form-control" id='chat-input'/>
+    </div>
+    <button id="button" class="btn btn-primary">送信</button>
+  </form>
+  <div id ='messages'>
+    <ul class="list-group">
+    <%= render @messages %>
+    </ul>
+  </div>
 </div>
-
-<%= form_with(model: [@conversation, @message]) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "メッセージを送る" %>
-  </div>
-<% end %>
