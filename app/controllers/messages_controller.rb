@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build
   end
 
+  # 現状非同期処理なので、createは必要ない
   def create
     @message = @conversation.messages.build(message_params)
     if @message.save

@@ -1,3 +1,7 @@
 <li class="list-group-item">
+  <p><%= message.user.name %></p>
+  <% if message.user.avater.attached? %>
+    <%= image_tag message.user.avater, size: '80x80' %>
+  <% end %>
   <p><%= message.content %></p>
 </li>

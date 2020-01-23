@@ -1,4 +1,10 @@
-<%= "名前：#{@user.name}" %>
+<% if @user.avater.attached? %>
+  <%#= link_to @user.avater.filename, rails_blob_path(@user.avater) %>
+  <%= image_tag @user.avater, size: '110x100' %>
+  <br>
+<% end %>
+
+<%= "アカウント名：#{@user.name}" %>
 <br>
 
 <% if @user.favorite_summoner.present? %>
@@ -6,6 +12,7 @@
   <%= @user.favorite_summoner %>
   <%= @summoner_main_data['name']%>
 <% end %>
+
 
 <% if @user.id != current_user.id %>
   <div class="item">
