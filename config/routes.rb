@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :join_groups
 
-  resources :conversations do
+  resources :conversations, shallow: true do 
     get :mail_box, on: :member
     resources :messages
   end

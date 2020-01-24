@@ -1,16 +1,11 @@
 class MessagesController < ApplicationController
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
-  end
+  before_action :set_conversasion, only: %i[index create]
 
   def index
-    # indexアクションに書かれたこれらの記載は、
-    # 一つ一つの部分で何をしているかの理解をわかりやすくするために
-    # このような記載にしていますが、実戦で用いるのには少々冗長なコードとなっているので
-    # 余力のある人はコードのリファクタリングにも挑戦してみましょう！
-    @messages = @conversation.messages
+    @messages = @conversation.messages.order(:created_at)
     gon.current_user = current_user
     gon.conversation = @conversation
+
 
     if @messages.length > 10
       @over_ten = true
@@ -28,6 +23,7 @@ class MessagesController < ApplicationController
 
     @messages = @messages.order(:created_at)
     @message = @conversation.messages.build
+
   end
 
   # 現状非同期処理なので、createは必要ない
@@ -36,13 +32,24 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     else
-      render 'index'
+      redirect_to conversation_messages_path
     end
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    conversation = @message.conversation
+    @message.destroy
+    redirect_to conversation_messages_path(conversation), notice: '投稿を削除しました'
   end
 
   private
 
+  def set_conversasion
+    @conversation = Conversation.find(params[:conversation_id])
+  end
+
   def message_params
-    params.require(:message).permit(:content, :user_id)
+    params.require(:message).permit(:content, :user_id, :image)
   end
 end
