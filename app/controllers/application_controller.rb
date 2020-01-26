@@ -22,12 +22,21 @@ class ApplicationController < ActionController::Base
     uri = URI.parse(encode_uri)
     return_data = Net::HTTP.get(uri)
     @summoner_main_data = JSON.parse(return_data)
+
     @summoner_id = @summoner_main_data['id']
 
     #取得したIDから、ランクを表示
     uri = URI.parse("https://jp1.api.riotgames.com/lol/league/v4/entries/by-summoner/#{@summoner_id}?api_key=#{@@api}")
     return_data = Net::HTTP.get(uri)
     @summoner_data = JSON.parse(return_data)
+  end
+
+  def check_account(summoner_name)
+    #名前が正しいアカウントか判定
+    encode_uri = URI.encode("https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/#{summoner_name}?api_key=#{@@api}")
+    uri = URI.parse(encode_uri)
+    return_data = Net::HTTP.get(uri)
+    @summoner_main_data = JSON.parse(return_data)
   end
 
   protected

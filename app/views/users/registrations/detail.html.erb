@@ -1,24 +1,29 @@
-<% if @user.avater.attached? %>
-  <%#= link_to @user.avater.filename, rails_blob_path(@user.avater) %>
-  <%= image_tag @user.avater, size: '110x100' %>
+<div class="container">
+  <% if @user.avater.attached? %>
+    <%#= link_to @user.avater.filename, rails_blob_path(@user.avater) %>
+    <%= image_tag @user.avater, size: '300x300' %>
+    <br>
+  <% end %>
+
+
+
+  <%= "アカウント名：#{@user.name}" %>
   <br>
-<% end %>
 
-<%= "アカウント名：#{@user.name}" %>
-<br>
-
-<% if @user.favorite_summoner.present? %>
-  <%= @summoner_data[0]['tier'] %>
-  <%= @user.favorite_summoner %>
-  <%= @summoner_main_data['name']%>
-<% end %>
+  <% if @user.favorite_summoner.present? %>
+    <%= @summoner_data[0]['tier'] %>
+    <%= @user.favorite_summoner %>
+    <%= @summoner_main_data['name']%>
+  <% end %>
 
 
-<% if @user.id != current_user.id %>
-  <div class="item">
-    <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
-  </div>
-  <%= render 'follow_form', user: @user %>
-<% else %>
-  <%= link_to 'メールボックス', mail_box_conversation_path %>
-<% end %>
+  <% if @user.id != current_user.id %>
+    <div class="item">
+      <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "fas fa-envelope" %>
+    </div>
+    <%= render 'follow_form', user: @user %>
+  <% else %>
+    <%= link_to 'メールボックス', mail_box_conversation_path, class: "fas fa-mail-bulk" %>
+    <%= link_to '設定変更はこちら', edit_user_registration_path %>
+  <% end %>
+</div>

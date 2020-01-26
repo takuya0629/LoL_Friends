@@ -11,13 +11,28 @@
     <div class="collapse navbar-collapse" id="Navbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/users/sign_up">新規登録 <span class="sr-only">(現位置)</span></a>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <%= link_to "ログイン", new_user_session_path %>
+          <a class="nav-link" href="/users/sign_up">新規登録 </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">リンク</a>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", new_user_session_path, class: "nav-link" %>
+          <% elsif %>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          <% end %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <%= link_to "グループ一覧", groups_path, class: "dropdown-item" %>
+            <%= link_to "グループ作成", groups_path, class: "dropdown-item" %>
+            <%= link_to "マイグループ", groups_path, class: "dropdown-item" %>
+          </div>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
         </li>

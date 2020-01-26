@@ -18,6 +18,11 @@
     <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :favorite_summoner %><br />
+    <%= f.text_field :favorite_summoner, autofocus: true, autocomplete: "favorite_summoner" %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

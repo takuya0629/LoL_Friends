@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order(:created_at)
     gon.current_user = current_user
     gon.conversation = @conversation
+    gon.avater = current_user.avater
 
 
     if @messages.length > 10
@@ -27,14 +28,14 @@ class MessagesController < ApplicationController
   end
 
   # 現状非同期処理なので、createは必要ない
-  def create
-    @message = @conversation.messages.build(message_params)
-    if @message.save
-      redirect_to conversation_messages_path(@conversation)
-    else
-      redirect_to conversation_messages_path
-    end
-  end
+  # def create
+  #   @message = @conversation.messages.build(message_params)
+  #   if @message.save
+  #     redirect_to conversation_messages_path(@conversation)
+  #   else
+  #     redirect_to conversation_messages_path
+  #   end
+  # end
 
   def destroy
     @message = Message.find(params[:id])
