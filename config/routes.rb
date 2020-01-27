@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     get :join_group_permission, on: :member
     get :join_group_deny, on: :member
   end 
+  
+  resources :boards do 
+    resources :responses
+  end
 
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"

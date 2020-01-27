@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :avater
+  has_many :boards
+  has_many :responses
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
