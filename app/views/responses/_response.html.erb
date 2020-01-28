@@ -1,0 +1,7 @@
+<li class="list-group-item">
+  <p><%= "#{response.user.name} 投稿時間：#{response.response_time}"%></p>
+  <% if response.user.avater.attached? %>
+    <%= image_tag url_for(response.user.avater), size: '80x80' %>
+  <% end %>
+  <p style="display: inline"><%= response.content %></p>
+</li>

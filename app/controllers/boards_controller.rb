@@ -7,7 +7,23 @@ class BoardsController < ApplicationController
   end
 
   def show
+    gon.current_user = current_user
+    gon.board = @board
+    @responses = @board.responses.order(:created_at)
+    # a = Board.last.responses.build(user_id: 1, content: 'aaa')
     
+    if @responses.length > 100
+      @over_ten = true
+      @responses = response.where(id: @responses[-10..-1].pluck(:id))
+    end
+
+    if params[:m]
+      @over_ten = false
+      @responses = @conversation.responses
+    end
+
+    @responses = @responses.order(:created_at)
+    @response = @board.responses.build
   end
 
   def new
