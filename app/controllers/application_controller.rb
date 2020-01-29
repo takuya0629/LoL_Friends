@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  require 'net/http'
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   env = Dotenv.load
   @@api = env['api']
@@ -13,22 +15,29 @@ class ApplicationController < ActionController::Base
     uri = URI.parse("https://ddragon.leagueoflegends.com/api/versions.json")
     return_data = Net::HTTP.get(uri)
     dd_data = JSON.parse(return_data)
-    @@dd_version = dd_data[0]
+    @dd_version = dd_data[0]
+  end
+
+  def profile_icon(summoner_main_data)
+    ddragon_version
+    @icon = "http://ddragon.leagueoflegends.com/cdn/#{@dd_version}/img/profileicon/#{summoner_main_data['profileIconId']}.png"
+  end
+
+  def rank_icon
   end
 
   def summoner_data(summoner_name)
-    #ユーザを検索しIDを取得
+    #ユーザを検索し、IDを取得
     encode_uri = URI.encode("https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/#{summoner_name}?api_key=#{@@api}")
     uri = URI.parse(encode_uri)
     return_data = Net::HTTP.get(uri)
     @summoner_main_data = JSON.parse(return_data)
-
     @summoner_id = @summoner_main_data['id']
 
     #取得したIDから、ランクを表示
     uri = URI.parse("https://jp1.api.riotgames.com/lol/league/v4/entries/by-summoner/#{@summoner_id}?api_key=#{@@api}")
     return_data = Net::HTTP.get(uri)
-    @summoner_data = JSON.parse(return_data)
+    @rank_data = JSON.parse(return_data)
   end
 
   def check_account(summoner_name)
@@ -36,7 +45,7 @@ class ApplicationController < ActionController::Base
     encode_uri = URI.encode("https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/#{summoner_name}?api_key=#{@@api}")
     uri = URI.parse(encode_uri)
     return_data = Net::HTTP.get(uri)
-    @summoner_main_data = JSON.parse(return_data)
+    @check_data = JSON.parse(return_data)
   end
 
   protected

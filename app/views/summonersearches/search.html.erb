@@ -1,0 +1,26 @@
+<div id="input-search">
+  <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit "search" %>
+  <% end %>
+
+  <% if @summoner_main_data.present? %>
+    <%= @summoner_main_data['name'] %>
+    <br>
+    <%= image_tag @icon, size: '200x200' %>
+    <% if @rank_data.present? %>
+      <%= "ソロランク: #{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
+      <br>
+      <%= "wins: #{@rank_data[0]['wins']} " %>
+      <%= "losses: #{@rank_data[0]['losses']} " %>
+      <% binding.irb %>
+
+    <% elsif %>
+      <p>ソロランク: Unranked</p>
+    <% end %>
+  <% end %>
+</div>
+
+
+ <!-- @summoner_main_data['profileIconId'] これアイコン-->
+<!-- @summoner_main_data['summonerLevel'] これレベル-->

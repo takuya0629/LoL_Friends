@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  require 'net/http'
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -24,8 +23,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    check_account(params[:user][:favorite_summoner])
-    if @summoner_main_data['name'] == nil
+    if params[:user][:favorite_summoner].present?
+      check_account(params[:user][:favorite_summoner])
+    end
+
+    if @summoner_main_data.present? && @summoner_main_data['name'] == nil
       return redirect_to edit_user_registration_path, notice: "お気に入りサモナーのアカウントが存在しません"
     end
 
