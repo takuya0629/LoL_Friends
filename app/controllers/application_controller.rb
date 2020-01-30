@@ -23,7 +23,37 @@ class ApplicationController < ActionController::Base
     @icon = "http://ddragon.leagueoflegends.com/cdn/#{@dd_version}/img/profileicon/#{summoner_main_data['profileIconId']}.png"
   end
 
-  def rank_icon
+  def match_data
+    uri = URI.parse("https://jp1.api.riotgames.com/lol/match/v4/matchlists/by-account/#{@summoner_main_data['accountId']}?api_key=#{@@api}")
+    return_data = Net::HTTP.get(uri)
+    @match_data = JSON.parse(return_data)
+    @latest_ten_match = []
+    @match_data['matches'].first(4).each do |hash|
+      @latest_ten_match << hash['gameId']
+    end
+  end
+
+  def match_game
+    match_data
+    @match_result = []
+    @match_summoner_name = []
+
+    @latest_ten_match.each do |id|
+      uri = URI.parse("https://jp1.api.riotgames.com/lol/match/v4/matches/#{id}?api_key=#{@@api}")
+      return_data = Net::HTTP.get(uri)
+      @game_data = JSON.parse(return_data)
+      @match_result << @game_data
+      # @match_result.each do |m| 
+      # m['participantIdentities'].each do |a|
+      #   a['player']['summonerName']
+      #   @match_summoner_name << a
+      # end
+    # end
+    end
+  end
+
+  def position_mapping
+
   end
 
   def summoner_data(summoner_name)

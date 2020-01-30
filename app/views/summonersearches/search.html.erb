@@ -1,26 +1,66 @@
-<div id="input-search">
-  <%= form_with(url: search_path, method: :get, local: true) do |f| %>
-    <%= f.text_field :search %>
-    <%= f.submit "search" %>
-  <% end %>
+<div class="container">
+  <div id="input-search">
+    <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit "search" %>
+    <% end %>
+  </div>
 
-  <% if @summoner_main_data.present? %>
-    <%= @summoner_main_data['name'] %>
+  <% if @summoner_main_data && @summoner_main_data['name'] %>
+    <%= "サモナーネーム　#{@summoner_main_data['name']}" %>
+    <br>
+    <%= "レベル　#{@summoner_main_data['summonerLevel']}" %>
     <br>
     <%= image_tag @icon, size: '200x200' %>
     <% if @rank_data.present? %>
       <%= "ソロランク: #{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
-      <br>
-      <%= "wins: #{@rank_data[0]['wins']} " %>
-      <%= "losses: #{@rank_data[0]['losses']} " %>
-      <% binding.irb %>
+      <%= image_tag("#{@rank_data[0]['tier'].downcase}.png") %>
+      <%= "#{@rank_data[0]['leaguePoints']}LP" %>
 
+      <br>
+      <%= "#{@rank_data[0]['wins']}勝 / #{@rank_data[0]['losses']}敗 " %>
     <% elsif %>
       <p>ソロランク: Unranked</p>
+      <%= image_tag("unranked.png") %>
+    <% end %>
+
+
+    <% if @match_result.present? %>
+      <% @match_result.each do |m| %>
+        <div style="border: solid 1px black">
+          <% red = m['participantIdentities'][0..4] %>
+          <% blue = m['participantIdentities'][5..9] %>
+          <% red_stats = m['participants'][0..4] %>
+          <% blue_stats = m['participants'][5..9] %>
+          <div>
+            <div>
+              <% red.each do |a| %>        
+                <%= a['player']['summonerName'] %> 
+                <%= image_tag icon(a['player']['profileIcon']), size: '50x50' %>
+              <% end %>
+            </div>
+            <div>
+              <% red_stats.each do |x| %>        
+                <span style="margin-right: 60px"><%= "キル数：#{x['stats']['kills']}" %></span>
+             <% end %>
+            </div>
+          </div>
+          <div>
+            <div>
+              <% blue.each do |a| %>        
+               <%= a['player']['summonerName'] %> 
+                <%= image_tag icon(a['player']['profileIcon']), size: '50x50' %>
+              <% end %>
+            </div>
+            <div>
+              <% blue_stats.each do |x| %>        
+                <span style="margin-right: 60px"><%= "キル数：#{x['stats']['kills']}" %></span> 
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
-
- <!-- @summoner_main_data['profileIconId'] これアイコン-->
-<!-- @summoner_main_data['summonerLevel'] これレベル-->
