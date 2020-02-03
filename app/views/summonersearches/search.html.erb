@@ -35,10 +35,10 @@
           <% main = m['participants'][target['participantId'] -1] %>
           <div class=<%= "match_history_#{main['stats']['win']}" %>>
           <div class="row">
-            <div class="col-6 ">
+            <div class="col-6 target_area">
               <!-- ゲームモードの特定 -->
               <%= game_type(m['queueId']) %>
-              <p><%= image_tag champ_icon(main['championId']), size: '30x30' %>
+              <p><%= image_tag champ_splash(main['championId']), size: '450x200' %>
               <%= "#{main['stats']['kills']}/#{main['stats']['deaths']}/#{main['stats']['assists']}" %></p>
               <%# binding.irb %>
               <% if main['stats']['win'] == true %>
@@ -51,7 +51,7 @@
               <div>
                 <p class='team_title'>ブルーチーム</p>
                 <% b_names = blue.map do |b| %>        
-                  <% b['player']['summonerName'] %>
+                  <% link_to b['player']['summonerName'], search_path(search: b['player']['summonerName']) %>
                 <% end %>
               </div>
               <div>
@@ -67,7 +67,7 @@
               <div>
                 <p class='team_title'>レッドチーム</p>
                 <% r_names = red.map do |r| %>        
-                 <% r['player']['summonerName'] %>
+                 <% link_to r['player']['summonerName'], search_path(search: r['player']['summonerName']) %>
                 <% end %>
               </div>
               <div class="champ_mini_icon">

@@ -7,9 +7,15 @@ module SummonersearchesHelper
     uri = URI.parse("https://ddragon.leagueoflegends.com/cdn/#{@dd_version}/data/ja_JP/champion.json")
     return_data = Net::HTTP.get(uri)
     @all_champ_data = JSON.parse(return_data)
-    select_champ = @all_champ_data['data'].values.find { |n| n["key"] == "#{champ_id}" }["id"] rescue nil
-    @champ_icon = "http://ddragon.leagueoflegends.com/cdn/#{@dd_version}/img/champion/#{select_champ}.png"
+    @select_champ = @all_champ_data['data'].values.find { |n| n["key"] == "#{champ_id}" }["id"] rescue nil
+    @champ_icon = "http://ddragon.leagueoflegends.com/cdn/#{@dd_version}/img/champion/#{@select_champ}.png"
   end
+
+  def champ_splash(champ_id)
+    champ_icon(champ_id)
+    @splash = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/#{@select_champ}_0.jpg"
+  end
+
 
   def game_type(q_id)
     uri = URI.parse("http://static.developer.riotgames.com/docs/lol/queues.json")
