@@ -3,6 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // 
 
-.blue_team {
-  background-color: blue;
+  
+.match_history_true, .match_history_false {
+  border: solid 1px black;
+}
+
+.match_history_true {
+  background-color: #66e6ff;
+}
+
+.match_history_false {
+ background-color: #cd5c5c;
+}
+
+.blue_team, .red_team {
+  text-align: center;
 }

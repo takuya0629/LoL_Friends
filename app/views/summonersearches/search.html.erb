@@ -23,45 +23,65 @@
       <p>ソロランク: Unranked</p>
       <%= image_tag("unranked.png") %>
     <% end %>
+
     <% if @match_result.present? %>
       <% @match_result.each do |m| %>
-        <div style="border: solid 1px black">
-         
+          <% blue = m['participantIdentities'][0..4] %>
+          <% red = m['participantIdentities'][5..9] %>
+          <% blue_stats = m['participants'][0..4] %>
+          <% red_stats = m['participants'][5..9] %>
+          <!-- 検索対象サモナーを特定 -->
+          <% target = m['participantIdentities'].find { |x| x['player']['summonerName'].include?(@summoner_main_data['name']) }%>
+          <% main = m['participants'][target['participantId'] -1] %>
+          <div class=<%= "match_history_#{main['stats']['win']}" %>>
           <div class="row">
-            <div class="col-6">
-              <%#= game_type(m['queueId']) %>
+            <div class="col-6 ">
+              <!-- ゲームモードの特定 -->
+              <%= game_type(m['queueId']) %>
+              <p><%= image_tag champ_icon(main['championId']), size: '30x30' %>
+              <%= "#{main['stats']['kills']}/#{main['stats']['deaths']}/#{main['stats']['assists']}" %></p>
+              <%# binding.irb %>
+              <% if main['stats']['win'] == true %>
+                <p>勝利</p>
+              <% else %>
+                <p>敗北</p>
+              <% end %>
             </div>
             <div class="col-3 blue_team">
               <div>
                 <p class='team_title'>ブルーチーム</p>
+                <% b_names = blue.map do |b| %>        
+                  <% b['player']['summonerName'] %>
+                <% end %>
               </div>
               <div>
-                <% @blue_matches.each do |x| %>
-                  <%= image_tag champ_icon(x[0].values[0][0]), size: '40x40' %>
-                  <%= x[0].keys[0] %>
-                  <br>
-                  
-                <% end %>
+                <% blue_stats.each.with_index do |b_stats, i| %>
+                  <%= b_names[i] %>
+                  <p><%= image_tag champ_icon(b_stats['championId']), size: '30x30' %>
+                  <%= "#{b_stats['stats']['kills']}/#{b_stats['stats']['deaths']}/#{b_stats['stats']['assists']}" %></p>
+          
+               <% end %>
               </div>
             </div>
             <div class="col-3">
               <div>
                 <p class='team_title'>レッドチーム</p>
-
+                <% r_names = red.map do |r| %>        
+                 <% r['player']['summonerName'] %>
+                <% end %>
               </div>
-              <div>
-                <% @red_matches.each do |x| %>
-                  <%= image_tag champ_icon(x[0].values[0][0]), size: '40x40' %>
-                  <%= x[0].keys[0] %>
-                  <br>
+              <div class="champ_mini_icon">
+                <% red_stats.each.with_index do |r_stats, i| %>
+                  <%= r_names[i] %>
+                  <p><%= image_tag champ_icon(r_stats['championId']), size: '30x30' %>      
+                  <%= "#{r_stats['stats']['kills']}/#{r_stats['stats']['deaths']}/#{r_stats['stats']['assists']}" %></p>
                 <% end %>
               </div>
             </div>
           </div>
         </div>
-        
-  <% end %>
-  <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 
