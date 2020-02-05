@@ -16,12 +16,10 @@
       <%= "ソロランク: #{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
       <%= image_tag("#{@rank_data[0]['tier'].downcase}.png") %>
       <%= "#{@rank_data[0]['leaguePoints']}LP" %>
-
       <br>
       <%= "#{@rank_data[0]['wins']}勝 / #{@rank_data[0]['losses']}敗 " %>
     <% elsif %>
       <p>ソロランク: Unranked</p>
-      <%= image_tag("unranked.png") %>
     <% end %>
 
     <% if @match_result.present? %>
@@ -35,19 +33,35 @@
           <% main = m['participants'][target['participantId'] -1] %>
           <div class=<%= "match_history_#{main['stats']['win']}" %>>
           <div class="row">
-            <div class="col-6 target_area">
+            <div class="col-lg-8">
               <!-- ゲームモードの特定 -->
               <%= game_type(m['queueId']) %>
-              <p><%= image_tag champ_splash(main['championId']), size: '450x200' %>
-              <%= "#{main['stats']['kills']}/#{main['stats']['deaths']}/#{main['stats']['assists']}" %></p>
-              <%# binding.irb %>
               <% if main['stats']['win'] == true %>
                 <p>勝利</p>
               <% else %>
                 <p>敗北</p>
               <% end %>
+              <div class='target_area container'>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <p class="img-responsive"><%= image_tag champ_splash(main['championId']), size: '450x250' %></p>
+                    <%= "#{main['stats']['kills']}kill /#{main['stats']['deaths']}death /#{main['stats']['assists']}assist" %>
+                    </div>
+                    <div class="col-sm-1">
+                    <!-- スペルの表示 -->
+                    <p><%= image_tag spell(main['spell1Id']), size: '40x40' %></p>
+                    <p><%= image_tag spell(main['spell2Id']), size: '40x40' %></p>
+                    <!-- ルーンの表示 -->
+                    <% rune(main['stats']['perk0'], main['stats']['perkPrimaryStyle'], main['stats']['perkSubStyle']) %>
+                    <p><%= image_tag @primary_icon, size: '40x40' %></p>
+                    <%= image_tag @sub_style_icon, size: '40x40' %>
+                    </div>
+
+                </div>
+
+              </div>
             </div>
-            <div class="col-3 blue_team">
+            <div class="col-2 blue_team">
               <div>
                 <p class='team_title'>ブルーチーム</p>
                 <% b_names = blue.map do |b| %>        
@@ -63,7 +77,7 @@
                <% end %>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-2 red_team">
               <div>
                 <p class='team_title'>レッドチーム</p>
                 <% r_names = red.map do |r| %>        

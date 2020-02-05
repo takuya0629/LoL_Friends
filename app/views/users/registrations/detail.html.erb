@@ -1,29 +1,56 @@
-<div class="container">
-  <% if @user.avater.attached? %>
-    <%#= link_to @user.avater.filename, rails_blob_path(@user.avater) %>
-    <%= image_tag @user.avater, size: '300x300' %>
-    <br>
-  <% end %>
-
-
-
-  <%= "アカウント名：#{@user.name}" %>
-  <br>
-
-  <% if @user.favorite_summoner.present? %>
-    <%= @rank_data[0]['tier'] %>
-    <%= @user.favorite_summoner %>
-    <%= @summoner_main_data['name']%>
-  <% end %>
-
-
+<div class=container>
+  <span>
   <% if @user.id != current_user.id %>
-    <div class="item">
-      <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "fas fa-envelope" %>
-    </div>
     <%= render 'follow_form', user: @user %>
-  <% else %>
-    <%= link_to 'メールボックス', mail_box_conversation_path, class: "fas fa-mail-bulk" %>
-    <%= link_to '設定変更はこちら', edit_user_registration_path %>
+    <%= link_to( conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-outline-primary waves-effect" ) do %>
+      <i class="fas fa-envelope"></i>メッセージを送る
+    <% end %>
+  <% elsif %>
+    <%= link_to( mail_box_conversation_path, { class: "btn btn-outline-primary waves-effect"} ) do %>
+      <i class="fas fa-mail-bulk"></i>メールボックス
+    <% end %>
+    <%= link_to '設定変更はこちら', edit_user_registration_path, class: "btn btn-outline-secondary waves-effect" %>
   <% end %>
+  </span>
 </div>
+
+<div class="container card mypage">
+  <div class="row justify-content-center main_area">
+    <div class="col-sm-5">
+      <%= "#{@user.name}さんのマイページです。" %>
+      <br><br>
+      <% if @user.avater.attached? %>
+        <%= image_tag @user.avater, size: '350x350', class: "animated swing" %>
+      <% else %>
+        <%= image_tag "no_image.png", size: '350x350' %>
+      <% end %>
+      <br><br><br><br>
+    </div> 
+
+    <div class="col-sm-4">
+      お気に入りサモナー
+    <br><br>
+
+    <div class="favorite_summoner_area">
+      <% if @user.favorite_summoner.present? %>
+        <p><%= image_tag @icon, size: '50x50', class: "animated bounce" %>
+        <%= @summoner_main_data['name']%></p>
+        <% if @rank_data.present? %>
+          <%= image_tag "#{@rank_data[0]['tier'].downcase}.png", size: '50x50', class: "animated bounce" %>
+          <%= "#{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
+          <%= "#{@rank_data[0]['leaguePoints']}LP" %>
+          <br><br><br><br>
+          <div class="card border-info mb-3" style="max-width: 22rem;">
+            <div class="card-body text-info">
+              <h5 class="card-title">profile</h5>
+              <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+ </div>
+ </div>
+
+ 

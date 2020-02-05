@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" />
+
     <title>LoLFriends</title>
     <%= include_gon %>
     <%= csrf_meta_tags %>
@@ -16,5 +19,7 @@
     <%= render 'shared/layouts/header' %>
     <p id="notice"><%= notice %></p>
     <%= yield %>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
   </body>
 </html>
