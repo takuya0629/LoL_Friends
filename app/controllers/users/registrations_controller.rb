@@ -27,8 +27,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       check_account(params[:user][:favorite_summoner])
     end
 
-    if @summoner_main_data.present? && @summoner_main_data['name'] == nil
-      return redirect_to edit_user_registration_path, notice: "お気に入りサモナーのアカウントが存在しません"
+    if @check_data.present? && @check_data['name'] == nil
+      flash[:danger] = "お気に入りサモナーのアカウントが存在しません"
+      return redirect_to edit_user_registration_path
     end
 
     resource_updated = update_resource(resource, account_update_params)

@@ -12,7 +12,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <% if user_signed_in? %>
-          <li><%= link_to "マイページ", new_user_session_path, class: "nav-link " %></li>
+          <li><%= link_to "マイページ", user_path(current_user), class: "nav-link " %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% elsif %>
           <li><a class="nav-link" href="/users/sign_up">新規登録 </a></li>
@@ -37,10 +37,10 @@
           </div>
         </li>
       </ul>
+      <span id="btn-2" class="text-info btn-hidden btn-load">Click me!</span>
       <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-md-0" do |f| %>
         <%= f.text_field :search, placeholder: 'サモナー検索...', class: 'form-control mr-sm-2' %>
-        <%= f.submit '検索', class: 'btn btn-outline-success my-2 my-sm-0', id: 'id="btn-one' %>
-
+        <%= f.submit '検索', class: 'btn btn-outline-success my-2 my-sm-0 btn-one' %>
       <% end %>
     </div>
   </nav>

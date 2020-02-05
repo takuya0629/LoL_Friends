@@ -35,7 +35,8 @@ class BoardsController < ApplicationController
     if params[:back]
       render :new 
     elsif @board.save
-      redirect_to @board, notice: '掲示板を作成しました' 
+      flash[:success] = '掲示板を作成しました' 
+      redirect_to @board 
     else
       render :new
     end

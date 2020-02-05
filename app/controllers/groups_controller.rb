@@ -27,7 +27,8 @@ class GroupsController < ApplicationController
     else
       if @group.save
         @group.join_groups.create(user_id: current_user.id)
-        redirect_to @group, notice: 'あなたのグループを作成しました。' 
+        flash[:success] = 'あなたのグループを作成しました。'
+        redirect_to @group  
       else
         render :new
       end
@@ -36,7 +37,8 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group, notice: '修正しました'
+      flash[:info] = '修正しました'
+      redirect_to @group 
     else
       flash.now[:error] = I18n.t('views.messages.failed_to_save_group')
       render :edit
@@ -51,10 +53,12 @@ class GroupsController < ApplicationController
   def change_approval_system
     if @group.approval_system == true
       @group.update(approval_system: 'false')
-      redirect_to @group, notice: 'このグループへの参加が自由になりました。'
+      flash[:info] = 'このグループへの参加が自由になりました。'
+      redirect_to @group
     else
       @group.update(approval_system: 'true')
-      redirect_to @group, notice: 'このグループへの加入申請を許可制にしました。'
+      flash[:info] = 'このグループへの加入申請を許可制にしました。'
+      redirect_to @group
     end
   end
 

@@ -2,8 +2,12 @@
 @import "bootstrap";
 @import "./summonersearches";
 @import "./users";
+@import "./header";
 
 body {
   background-color: #c0c0c0;
 }
 
+.alert {
+  text-align: center;
+}

@@ -41,7 +41,8 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     conversation = @message.conversation
     @message.destroy
-    redirect_to conversation_messages_path(conversation), notice: '投稿を削除しました'
+    flash[:success] = '投稿を削除しました'
+    redirect_to conversation_messages_path(conversation)
   end
 
   private

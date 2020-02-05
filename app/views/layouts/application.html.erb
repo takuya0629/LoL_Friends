@@ -17,7 +17,11 @@
 
   <body>
     <%= render 'shared/layouts/header' %>
-    <p id="notice"><%= notice %></p>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value.html_safe %>
+      </div>
+    <% end %>
     <%= yield %>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>

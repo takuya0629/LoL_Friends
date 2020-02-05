@@ -4,11 +4,12 @@ class JoinGroupsController < ApplicationController
 
   def create
     if @group.join_group_users.find_by(id: current_user.id)
-      redirect_to @group, notice: 'あなたは参加済です'
-
+      flash[:warning] = 'あなたは参加済です'
+      redirect_to @group
     elsif @group.approval_system == false
       @group.join_groups.create(user_id: current_user.id)
-      redirect_to @group, notice: 'グループへ参加しました'
+      flash[:warning] = 'グループへ参加しました'
+      redirect_to @group
     end
   end
   

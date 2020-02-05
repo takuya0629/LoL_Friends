@@ -28,8 +28,10 @@ class ApplicationController < ActionController::Base
     return_data = Net::HTTP.get(uri)
     @match_data = JSON.parse(return_data)
     @latest_ten_match = []
-    @match_data['matches'].first(3).each do |hash|
-      @latest_ten_match << hash['gameId']
+    if  @match_data['matches'].present?
+      @match_data['matches'].first(3).each do |hash|
+        @latest_ten_match << hash['gameId']
+      end
     end
   end
 
