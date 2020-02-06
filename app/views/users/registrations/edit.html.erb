@@ -4,7 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :avater %><br />
+    <%= f.label :プロフィール画像 %><br />
     <%= f.file_field :avater, autofocus: true, autocomplete: "avater" %>
   </div>
 
@@ -19,8 +19,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :favorite_summoner %><br />
+    <%= f.label :お気に入りサモナー %><br />
     <%= f.text_field :favorite_summoner, autofocus: true, autocomplete: "favorite_summoner" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :プロフィール %><br />
+    <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

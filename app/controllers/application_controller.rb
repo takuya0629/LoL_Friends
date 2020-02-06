@@ -45,12 +45,6 @@ class ApplicationController < ActionController::Base
       return_data = Net::HTTP.get(uri)
       @game_data = JSON.parse(return_data)
       @match_result << @game_data
-      # @match_result.each do |m| 
-      # m['participantIdentities'].each do |a|
-      #   a['player']['summonerName']
-      #   @match_summoner_name << a
-      # end
-    # end
     end
   end
 
@@ -85,7 +79,7 @@ class ApplicationController < ActionController::Base
   # 入力フォームからアカウント名情報をDBに保存するために追加
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :summoner_id, :group_id, :admin, :favorite_summoner])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :summoner_id, :group_id, :admin, :favorite_summoner, :avater, :email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :summoner_id, :group_id, :admin, :favorite_summoner, :avater, :email, :introduction])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email])
   end
 end

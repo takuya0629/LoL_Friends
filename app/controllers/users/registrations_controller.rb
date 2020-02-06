@@ -65,8 +65,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.favorite_summoner.present?
       summoner_data(@user.favorite_summoner)
+      profile_icon(@summoner_main_data)
     end
-    profile_icon(@summoner_main_data)
 
   end
 

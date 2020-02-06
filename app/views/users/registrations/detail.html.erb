@@ -28,29 +28,37 @@
     </div> 
 
     <div class="col-sm-4">
-      お気に入りサモナー
-    <br><br>
-
-    <div class="favorite_summoner_area">
       <% if @user.favorite_summoner.present? %>
-        <p><%= image_tag @icon, size: '50x50', class: "animated bounce" %>
-        <%= @summoner_main_data['name']%></p>
-        <% if @rank_data.present? %>
-          <%= image_tag "#{@rank_data[0]['tier'].downcase}.png", size: '50x50', class: "animated bounce" %>
-          <%= "#{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
-          <%= "#{@rank_data[0]['leaguePoints']}LP" %>
-          <br><br><br><br>
-          <div class="card border-info mb-3" style="max-width: 22rem;">
-            <div class="card-body text-info">
-              <h5 class="card-title">profile</h5>
-              <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
-            </div>
-          </div>
+      <p>お気に入りサモナー</p>
+      <br><br>
+
+        <div class="favorite_summoner_area">
+          <% if @user.favorite_summoner.present? %>
+            <p><%= image_tag @icon, size: '50x50', class: "animated bounce" %>
+            <%= @summoner_main_data['name']%></p>
+            <% if @rank_data.present? %>
+              <%= image_tag "#{@rank_data[0]['tier'].downcase}.png", size: '50x50', class: "animated bounce" %>
+              <%= "#{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
+              <%= "#{@rank_data[0]['leaguePoints']}LP" %>
+              <br><br><br><br>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <% if @user == current_user %>
+          <p>お気に入りサモナーを登録してみよう！</p>
+        <% else %>
+          <%= "#{@user.name}さんのお気に入りサモナーは登録されていません。" %>
         <% end %>
       <% end %>
+      <div class="card border-info mb-3" style="max-width: 22rem;">
+        <div class="card-body text-info">
+          <h5 class="card-title">profile</h5>
+          <p class="card-text"><%= "#{@user.introduction}" %></p>
+        </div>
+      </div>
     </div>
   </div>
- </div>
  </div>
 
  

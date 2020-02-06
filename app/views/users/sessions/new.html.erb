@@ -1,26 +1,47 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login, autofocus: true, autocomplete: "login" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <div class="container my-5 py-5 z-depth-1">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="col-md-6">
+          <!-- Default form login -->
+          <form class="text-center" action="#!">
+            <p class="h4 mb-4">Sign in</p>
+            <!-- Email -->
+            <%= f.text_field :login, autofocus: true, autocomplete: "off", id: "defaultLoginFormId", class: "form-control mb-4",placeholder: "UserName"%>
+ 
+            <!-- Password -->
+            <%= f.password_field :password, autocomplete: "off", id: "defaultLoginFormPassword", class:"form-control mb-4", placeholder: "Password" %>
+            <div class="d-flex justify-content-around">
+              <div>
+                <!-- Remember me -->
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                <% if devise_mapping.rememberable? %>
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                <% end %>
+              </div>
+              <div>
+                <!-- Forgot password -->
+                <p><a href="/users/password/new">パスワードを忘れた場合</a></p>
+                <p><a href="/users/confirmation/new">確認用メールが届かない</a></p>
+
+              </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+          </form>
+          <!-- Default form login -->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!--Section: Content-->
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
