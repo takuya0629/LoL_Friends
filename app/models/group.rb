@@ -1,4 +1,5 @@
 class Group < ApplicationRecord
+  has_one_attached :icon
   has_many :join_groups, dependent: :destroy
   has_many :join_group_users, through: :join_groups, source: :user
   has_many :judgements, dependent: :destroy

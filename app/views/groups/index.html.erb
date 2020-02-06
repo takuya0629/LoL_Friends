@@ -24,3 +24,38 @@
 <br>
 
 <%= link_to 'New group', new_group_path %>
+
+
+
+<% @groups.each do |group| %>
+
+<div class="container pt-5 my-5 z-depth-1" style="background-image: url(<%= "#{group.icon}" %>)">
+  <section class="p-md-3 mx-md-5 text-lg-left">
+    <h2 class="text-center font-weight-bold mb-4 pb-1"><%= "#{group.name}" %></h2>
+    <p class="text-center lead mb-5 pb-2 text-muted"><%= group.introduction %></p>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 mb-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-5 avatar w-100 white d-flex justify-content-center align-items-center"
+          >
+          <% if group.owner.avater.attached? %>
+            <%= image_tag group.owner.avater, class: "img-fluid rounded-circle z-depth-1" %>
+          <% else %>
+            <%= image_tag "no_image.png", class: "img-fluid rounded-circle z-depth-1" %>
+          <% end %>
+          </div>
+          <div class="col-7">
+            <h6 class="font-weight-bold pt-2"><%= group.owner.name %></h6>
+            <p class="text-muted">
+              グループオーナー
+            </p>
+          </div>
+        </div>
+      </div>
+
+      </div>
+  </section>
+
+</div>
+<% end %>
