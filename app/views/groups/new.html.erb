@@ -13,43 +13,61 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="container my-5 py-5 z-depth-1">
-    <!--Section: Content-->
-    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center">
-        <!--Grid column-->
-        <div class="col-md-6">
-          <!-- Default form register -->
-          <form class="text-center" action="#!">
-
-            <p class="h4 mb-4">グループを作成する</p>
-            <div class="form-row mb-4">
-            </div>
-  
+<!-- Main navigation -->
+  <!-- Full Page Intro -->
+  <section style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_3.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class='test'>
+    <!-- Mask & flexbox options-->
+    <div class="mask d-flex justify-content-center align-items-center">
+      <!-- Content -->
+      <div class="container py-5 my-5">
+        <h3 class="font-weight-bold text-center white-text pb-2 ">グループを作成する！</h3>  
+        
+        <p class="lead text-center white-text pt-2 mb-5"></p>
+        
+        <!--Grid row-->
+        <div class="row d-flex align-items-center justify-content-center">
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5">
+            <!--Form-->
+            <div class="card">
+              <div class="card-body z-depth-2 px-4 board-card">
             <!-- グループ名 -->
-            <%= form.label :グループ名 %>
-            <%= form.text_field :name, placeholder: 'グループ名', id: "group_name", class: "form-control mb-4" %>
+            <div class="md-form mt-3">
+              <i class="fas fa-pencil-alt prefix cyan-text "></i>
+              <label for="group-form1">グループ名</label>
+              <%= form.text_field :name, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
+            </div>
 
             <!-- Password -->
-            <%= form.label :グループの説明 %>
-            <%= form.text_field :introduction, placeholder: 'グループの説明', id: "group_introduction", class: "form-control mb-4" %>
+            <div class="md-form">
+              <i class="fas fa-star prefix cyan-text"></i>
+              <label for="board-form2">内容</label>
+              <%= form.text_field :introduction, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
+            </div>
 
-            <!-- Phone number -->
-            <%= form.label :グループのアイコン %>
-            <%= form.file_field :icon, id: "group_icon", class: "mb-4" %>
-
-            <!-- Sign up button -->
-            <button class="btn btn-info my-4 btn-block" type="submit">グループを作成する</button>
-
-          </form>
-          <!-- Default form register -->
+            <div class="md-form">
+              <i class="far fa-image prefix cyan-text"></i>
+              <%= form.file_field :icon, autocomplete: "off", class: "session-form", id: "group_icon" %>
+            </div>
+                <div class="text-center my-3">
+                  <button class="btn btn-info btn-block my-4" type="submit">スレッド作成！</button>
+                </div>
+              </div>
+              </div>
+            </div>
+            <!--/.Form-->
+          </div>
+          <!--Grid column-->
         </div>
-        <!--Grid column-->
+        <!--Grid row-->
       </div>
-      <!--Grid row-->
-    </section>
-    <!--Section: Content-->
-  </div>
+      <!-- Content -->
+    </div>
+    <br>
+    <!-- Mask & flexbox options-->
+    <br>
+  </section>
+  <!-- Full Page Intro -->
+<!-- Main navigation -->
 <% end %>
+

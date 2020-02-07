@@ -31,7 +31,7 @@
               <div class="card border-warning mb-3" style="max-width: 22rem;">
                 <div class="card-body text-info">
                   <h5 class="card-title">紹介文</h5>
-                  <p class="card-text"><%= "#{group.introduction}" %></p>
+                  <p class="card-text"><%= "#{group.introduction}".truncate(24, omission: '...') %></p>
                 </div>
               </div>
             </div>

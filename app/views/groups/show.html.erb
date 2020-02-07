@@ -28,25 +28,22 @@
     </p>
 
     <% if current_user == @group.owner %>
-      <div>
-        <%= link_to change_approval_system_group_path(group_id: @group.id), method: :patch, class: "btn btn-outline-primary waves-effect" do %>
-          <i class="fas fa-plus-square"></i> 承認設定をかえる
+      <div class="row justify-content-center">
+        <%= link_to change_approval_system_group_path(group_id: @group.id), method: :patch, class: "btn btn-outline-secondary btn-rounded waves-effect" do %>
+          <i class="fas fa-hammer"></i> 承認設定をかえる
         <% end %>
-      </div>
-      <div>
         <%= link_to edit_group_path(@group), class: "btn btn-outline-primary waves-effect" do %>
-          <i class="fas fa-plus-square"></i> 設定を変更する
+          <i class="fas fa-cogs"></i> 設定を変更する
         <% end %>
       </div>
+      <br>
     <% end %>
     <!--First row-->
     <div class="row">
       <!--First column-->
       <div class="col-md-6 mb-4">
-
         <!-- Card -->
         <span class="card hoverable">
-          
           <!-- Card content -->
           <div class="card-body">
 
@@ -56,7 +53,11 @@
               </span>
               <div class="media-body">
                 <h5 class="dark-grey-text mb-3">紹介文</h5>
-                <p class="font-weight-light text-muted mb-0"><%= @group.introduction %></p>
+                <div class="card border-info mb-3" style="max-width: 22rem;">
+                  <div class="card-body text-info">
+                    <p class="card-text font-weight-light text-muted mb-0"><%= "#{@group.introduction}" %></p>
+                  </div>
+                </div> 
               </div>
             </div>
             
@@ -77,13 +78,15 @@
 
             <div class="media">
               <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
-                <i class="fas fa-user-friends fa-2x purple-text"></i>
+                <i class="fas fa-user-friends fa-2x text-info"></i>
               </span>
               <div class="media-body">
                 <h5 class="dark-grey-text mb-3">グループオーナー</h5>
                 <p class="font-weight-light text-muted mb-0">
                   <% if @group.owner.avater.attached? %>
                     <%= image_tag @group.owner.avater, size: '30x30' %>
+                  <% else %>
+                    <%= image_tag 'no_image.png', size: '30x30' %>
                   <% end %>
                   <%= @group.owner.name %>
                 <h5 class="dark-grey-text mb-3">グループメンバー</h5>
