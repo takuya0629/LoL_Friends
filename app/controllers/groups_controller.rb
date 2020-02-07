@@ -39,7 +39,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      flash[:info] = '修正しました'
+      flash[:success] = '修正しました'
       redirect_to @group 
     else
       flash.now[:error] = I18n.t('views.messages.failed_to_save_group')
@@ -49,7 +49,8 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groups_url, notice: '投稿を削除しました' 
+    flash[:success] = 'グループを削除しました'
+    redirect_to groups_url 
   end
 
   def change_approval_system

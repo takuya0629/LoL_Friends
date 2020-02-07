@@ -43,6 +43,12 @@
             <!-- Sign up button -->
             <button class="btn btn-info my-4 btn-block" type="submit">設定を変更する</button>
 
+            <div class='row justify-content-center'>
+              <%= link_to group_path(@group), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger waves-effect" do %>
+                <i class="fas fa-skull-crossbones"></i> 削除
+              <% end %>
+            </div>
+
           </form>
           <!-- Default form register -->
         </div>

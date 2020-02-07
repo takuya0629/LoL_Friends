@@ -111,16 +111,9 @@
     <% unless current_user == @group.owner %>
       <% if @group.join_group_users.find_by(id: current_user.id) %>
         <%= link_to join_group_path(@join_group), method: :delete, data: { confirm: '本当に脱退しますか？' }, class: "btn btn-outline-danger waves-effect" do %>
-          <i class="fas fa-skull-crossbones"></i> 脱退
+          <i class="fas fa-exclamation-triangle"></i> 脱退
         <% end %>
       <% end %>
     <% end %>
   </div>
 </div>
-
-
-
-
-
-
-
