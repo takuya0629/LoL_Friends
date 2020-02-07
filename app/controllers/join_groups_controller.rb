@@ -1,6 +1,6 @@
 class JoinGroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group
+  before_action :set_group, only: :create
 
   def create
     if @group.join_group_users.find_by(id: current_user.id)
@@ -11,6 +11,15 @@ class JoinGroupsController < ApplicationController
       flash[:warning] = 'グループへ参加しました'
       redirect_to @group
     end
+  end
+
+  def destroy
+    # @join_group = current_user.join_groups.find_by(group_id: @group)
+    @join_group = JoinGroup.find(params[:id])
+    @join_group.destroy
+
+    flash[:warning] = 'グループを脱退しました。'
+      redirect_to groups_path
   end
   
   private

@@ -18,6 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @join_group = JoinGroup.find_by(user_id: current_user, group_id: @group)
   end
 
   def create

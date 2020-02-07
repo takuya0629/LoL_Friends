@@ -3,7 +3,7 @@ class JudgementsController < ApplicationController
   before_action :set_group, only: %i[create]
 
   def create
-    if @group.join_group_users.find_by(id: current_user.id)
+    if @group.judgements.find_by(user_id: current_user.id)
       flash[:warning] = 'あなたは加入申請済です'
       redirect_to @group
     else

@@ -1,41 +1,126 @@
 
-<p>このグループの名前：<%= @group.name %></p>
 
-<br>
-<p>おーなー：<%= @group.owner.name %></p>
+<div class="container my-5">
+  <!--Section: Content-->
+  <section class="dark-grey-text">
+    <!-- Section heading -->
+    <h3 class="text-center font-weight-bold mb-4 pb-2"><%= @group.name %></h3>
+    <hr class="w-header">
+    <!-- Section description -->
+    <p class="lead text-center w-responsive mx-auto mt-4 pt-2 mb-5">
+      <% if @group.approval_system == true %>
+        <%= "このグループへの参加は許可制です" %>
 
-<% if @group.icon.attached? %>
-  <p>icon：<%= image_tag @group.icon %></p>
-<% end %>
+        <% unless @group.join_group_users.find_by(id: current_user.id) %>
+          <%= link_to judgements_path(group_id: @group.id),method: :post, data: { confirm: '加入申請しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
+            <i class="far fa-paper-plane "></i> 加入申請をする
+          <% end %>
+        <% end -%>
+      <% else %>
+        <%= "このグループへの参加は自由です" %>
+        <% unless @group.join_group_users.find_by(id: current_user.id) %>
 
-<br>
-<% @group.join_group_users.each do |a| %>
-  <%= "めんばー:#{a.name}" %>
-  <br>
-<% end %>
+          <%= link_to join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
+            <i class="fas fa-plus-square"></i> 参加する
+          <% end %>
+        <% end %>
+      <% end %>
+    </p>
 
-<br>
-<% unless @group.join_group_users.find_by(id: current_user.id) %>
-    
-  <% if @group.approval_system == true %>
-    <p><%= "このグループへの参加は許可制です" %></p>
-    <%= link_to '加入申請をする', judgements_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
-  <% else %>
-    <p><%= "このグループへの参加は自由です" %></p>
-    <%= link_to '参加する', join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' } %>
-  <% end %>
-<% end %>
+    <% if current_user == @group.owner %>
+      <div>
+        <%= link_to change_approval_system_group_path(group_id: @group.id), method: :patch, class: "btn btn-outline-primary waves-effect" do %>
+          <i class="fas fa-plus-square"></i> 承認設定をかえる
+        <% end %>
+      </div>
+      <div>
+        <%= link_to edit_group_path(@group), class: "btn btn-outline-primary waves-effect" do %>
+          <i class="fas fa-plus-square"></i> 設定を変更する
+        <% end %>
+      </div>
+    <% end %>
+    <!--First row-->
+    <div class="row">
+      <!--First column-->
+      <div class="col-md-6 mb-4">
+
+        <!-- Card -->
+        <span class="card hoverable">
+          
+          <!-- Card content -->
+          <div class="card-body">
+
+            <div class="media">
+              <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
+                <i class="fab fa-react fa-2x text-info"></i>
+              </span>
+              <div class="media-body">
+                <h5 class="dark-grey-text mb-3">紹介文</h5>
+                <p class="font-weight-light text-muted mb-0"><%= @group.introduction %></p>
+              </div>
+            </div>
+            
+          </div>
+
+        </span>
+        <!-- Card -->
+
+      </div>
+      <!--First column-->
+
+      <!--Second column-->
+      <div class="col-md-6 mb-4">
+        <!-- Card -->
+        <span class="card hoverable">
+          <!-- Card content -->
+          <div class="card-body">
+
+            <div class="media">
+              <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
+                <i class="fas fa-user-friends fa-2x purple-text"></i>
+              </span>
+              <div class="media-body">
+                <h5 class="dark-grey-text mb-3">グループオーナー</h5>
+                <p class="font-weight-light text-muted mb-0">
+                  <% if @group.owner.avater.attached? %>
+                    <%= image_tag @group.owner.avater, size: '30x30' %>
+                  <% end %>
+                  <%= @group.owner.name %>
+                <h5 class="dark-grey-text mb-3">グループメンバー</h5>
+                <p class="font-weight-light text-muted mb-0">
+                  <% @group.join_group_users.each do |a| %>
+                    <% if a.avater.attached? %>
+                      <p><%= image_tag a.avater, size: '30x30' %>
+                      <%= a.name %></p>
+                    <% elsif %>
+                      <p><%= image_tag 'no_image.png', size: '30x30' %>
+                      <%= a.name %></p>
+                    <% end %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <!--Second column-->
+    </div>
+    <!--First row-->
+  </section>
+  <div class='row justify-content-center'>
+    <% unless current_user == @group.owner %>
+      <% if @group.join_group_users.find_by(id: current_user.id) %>
+        <%= link_to join_group_path(@join_group), method: :delete, data: { confirm: '本当に脱退しますか？' }, class: "btn btn-outline-danger waves-effect" do %>
+          <i class="fas fa-skull-crossbones"></i> 脱退
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 
 
 
-<% if @group.approval_system == true %>
-  <p><%= "このグループへの参加は許可制です" %></p>
-<% else %>
-  <p><%= "このグループへの参加は自由です" %></p>
-<% end %>
 
-<% if current_user == @group.owner %>
-    <%= link_to '設定変更', edit_group_path(@group) %>
-    <%= link_to '承認設定をかえる', change_approval_system_group_path(group_id: @group.id), method: :patch %>
-  <% end %>
+
+
