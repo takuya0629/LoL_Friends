@@ -4,6 +4,10 @@
 <br>
 <p>おーなー：<%= @group.owner.name %></p>
 
+<% if @group.icon.attached? %>
+  <p>icon：<%= image_tag @group.icon %></p>
+<% end %>
+
 <br>
 <% @group.join_group_users.each do |a| %>
   <%= "めんばー:#{a.name}" %>
@@ -32,5 +36,6 @@
 <% end %>
 
 <% if current_user == @group.owner %>
+    <%= link_to '設定変更', edit_group_path(@group) %>
     <%= link_to '承認設定をかえる', change_approval_system_group_path(group_id: @group.id), method: :patch %>
   <% end %>

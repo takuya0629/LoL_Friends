@@ -7,12 +7,13 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page]).per(2)
   end
 
   def edit
     if current_user.id != @group.owner_id
-      redirect_to groups_path, notice: 'あなたはこのグループのオーナーではありません。'
+      flash[:danger] = 'あなたはこのグループのオーナーではありません。'
+      redirect_to groups_path 
     end
   end
 
@@ -76,6 +77,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def group_params
-    params.require(:group).permit(:name, :introduction, :owner_id, :approval_system)
+    params.require(:group).permit(:name, :introduction, :owner_id, :approval_system, :icon)
   end
 end

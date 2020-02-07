@@ -1,0 +1,56 @@
+<%= form_with(model: @group, local: true) do |form| %>
+  <% if @group.errors.any? %>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5>
+        <i class="icon fa fa-ban"></i>
+        <%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:
+      </h5>
+      <ul>
+        <% group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="container my-5 py-5 z-depth-1">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="col-md-6">
+          <!-- Default form register -->
+          <form class="text-center" action="#!">
+
+            <p class="h4 mb-4">グループの設定変更</p>
+            <div class="form-row mb-4">
+            </div>
+  
+            <!-- グループ名 -->
+            <%= form.label :グループ名 %>
+            <%= form.text_field :name, placeholder: 'グループ名', id: "group_name", class: "form-control mb-4" %>
+
+            <!-- Password -->
+            <%= form.label :グループの説明 %>
+            <%= form.text_field :introduction, placeholder: 'グループの説明', id: "group_introduction", class: "form-control mb-4" %>
+
+            <!-- Phone number -->
+            <%= form.label :グループのアイコン %>
+            <%= form.file_field :icon, id: "group_icon", class: "mb-4" %>
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">設定を変更する</button>
+
+          </form>
+          <!-- Default form register -->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!--Section: Content-->
+  </div>
+<% end %>
