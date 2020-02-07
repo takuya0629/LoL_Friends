@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @groups = Group.all.page(params[:page]).per(2)
+    @groups = Group.all.page(params[:page]).per(4)
   end
 
   def edit

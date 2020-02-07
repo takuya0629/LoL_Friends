@@ -1,47 +1,57 @@
-<%= link_to 'New group', new_group_path %>
+<section class='group-index'>
 
-<!-- <div style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Teemo_3.jpg');"> -->
-<div class="container" >
-  <div class='row justify-content-between'>
-    <% @groups.each do |group| %>
+  <div class='row justify-content-center'>
+    <h1>グループ一覧</h1>
+  </div>
 
-      <div class="col-sm-5 pt-1 my-4 z-depth-1 groups">
-        <p><%= link_to "グループ名 : #{group.name}", group %></p>
-        <div class="row justify-content-around">
-          <div class='col-5 group-box'>
-            <% if group.icon.attached? %>
-              <%= image_tag group.icon, class: 'img-fluid', size: '100x100' %>
-            <% else %>
-              <%= image_tag "no_image.png", class: 'img-fluid', size: '100x100' %>
-            <% end %>
+  <div class="container" >
+    <div class='row justify-content-between'>
+      <% @groups.each do |group| %>
 
-
-            <div>グループオーナー
-              <% if group.owner.avater.attached? %>
-                <p><%= image_tag group.owner.avater, class: 'img-fluid', size: '40x40' %>
+        <div class="col-sm-5 pt-1 my-4 z-depth-1 groups">
+          <p><%= link_to "グループ名 : #{group.name}", group %></p>
+          <div class="row justify-content-around">
+            <div class='col-5 group-box'>
+              <% if group.icon.attached? %>
+                <%= image_tag group.icon, class: 'img-fluid', size: '100x100' %>
+              <% else %>
+                <%= image_tag "no_image.png", class: 'img-fluid', size: '100x100' %>
               <% end %>
-              <%= "#{group.owner.name}" %></p>
-          </div>
-          </div>
 
-          <div class='col-5 group-box'>
-            <div class="card border-warning mb-3" style="max-width: 22rem;">
-              <div class="card-body text-info">
-                <h5 class="card-title">紹介文</h5>
-                <p class="card-text"><%= "#{group.introduction}" %></p>
+
+              <div>グループオーナー
+                <% if group.owner.avater.attached? %>
+                  <p><%= image_tag group.owner.avater, class: 'img-fluid', size: '40x40' %>
+                <% end %>
+                <%= "#{group.owner.name}" %></p>
+            </div>
+            </div>
+
+            <div class='col-5 group-box'>
+              <div class="card border-warning mb-3" style="max-width: 22rem;">
+                <div class="card-body text-info">
+                  <h5 class="card-title">紹介文</h5>
+                  <p class="card-text"><%= "#{group.introduction}" %></p>
+                </div>
               </div>
             </div>
-          </div>
-        </div>  
-      </div>
-    <% end %>
+          </div>  
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div class='row justify-content-center'>
-  <%= link_to 'New group', new_group_path, class: 'btn aqua-gradient' %>
-  <%= paginate @groups %>
-</div>
+  <br><br>
+  <div class='row justify-content-center'>
+    <div>
+      <%= link_to new_group_path, class: "btn btn-outline-primary waves-effect" do %>
+        <i class="fas fa-plus-square"></i> グループを作成する！
+      <% end %>
+    </div>
+  </div>
 
-
-
+  <br><br><br>
+  <div class='row justify-content-center'>
+      <p><%= paginate @groups %></p>
+  </div>
+</section>
