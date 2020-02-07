@@ -14,18 +14,42 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: 'あ', class: 'form-control' %>
-  </div>
+  <div class="container my-5 py-5 z-depth-1">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="col-md-6">
+          <!-- Default form register -->
+          <form class="text-center" action="#!">
 
-  <div class="form-group">
-    <%= form.label :introduction %><br>
-    <%= form.text_field :introduction %>
-  </div>
+            <p class="h4 mb-4">グループを作成する</p>
+            <div class="form-row mb-4">
+            </div>
+  
+            <!-- グループ名 -->
+            <%= form.label :グループ名 %>
+            <%= form.text_field :name, placeholder: 'グループ名', id: "group_name", class: "form-control mb-4" %>
 
-  <div class="form-group">
-    <%= form.hidden_field :owner_id, value: current_user.id %>
-    <%= form.submit '作成！', class: 'btn btn-primary' %>
+            <!-- Password -->
+            <%= form.label :グループの説明 %>
+            <%= form.text_field :introduction, placeholder: 'グループの説明', id: "group_introduction", class: "form-control mb-4" %>
+
+            <!-- Phone number -->
+            <%= form.label :グループのアイコン %>
+            <%= form.file_field :icon, id: "group_icon", class: "mb-4" %>
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">設定を変更する</button>
+
+          </form>
+          <!-- Default form register -->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!--Section: Content-->
   </div>
 <% end %>
