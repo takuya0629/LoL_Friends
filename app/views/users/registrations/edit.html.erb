@@ -1,63 +1,67 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :プロフィール画像 %><br />
-    <%= f.file_field :avater, autofocus: true, autocomplete: "avater" %>
-  </div>
+  <div class="container my-5 py-5 z-depth-1">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="col-md-6">
+          <!-- Default form register -->
+          <form class="text-center" action="#!">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <p class="h4 mb-4">グループの設定変更</p>
+            <div class="form-row mb-4">
+            </div>
+  
+            <!-- profile画像 -->
+            <%= form.label :プロフィール画像 %><br />
+            <%= form.file_field :avater, autofocus: true, placeholder: 'プロフィール画像', id: "profile_icon", class: "mb-4" %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
-  </div>
+            <!-- email -->
+            <%= form.label :email %><br />
+            <%= form.email_field :email, autofocus: true, placeholder: 'email', id: "user_email", class: "form-control mb-4" %>
 
-  <div class="field">
-    <%= f.label :お気に入りサモナー %><br />
-    <%= f.text_field :favorite_summoner, autofocus: true, autocomplete: "favorite_summoner" %>
-  </div>
+            <!-- name -->
+            <%= form.label :name %><br />
+            <%= form.text_field :name, autofocus: true, placeholder: 'name', id: "user_name", class: "form-control mb-4" %>
 
-  <div class="field">
-    <%= f.label :プロフィール %><br />
-    <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
-  </div>
+            <!-- favorite_summoner -->
+            <%= form.label :お気に入りサモナー %><br />
+            <%= form.text_field :favorite_summoner, autofocus: true, placeholder: 'お気に入りサモナー', id: "user_favorite_summoner", class: "form-control mb-4" %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+            <!-- Phone number -->
+            <%= form.label :プロフィール %><br />
+            <%= form.text_field :introduction, autofocus: true, placeholder: 'プロフィール', id: "profile", class: "form-control mb-4" %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+            <%= form.label :パスワードを変更する場合 %><br />
+            <%= form.password_field :password, autofocus: true, placeholder: 'password', id: "password", class: "form-control mb-4" %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+            <%= form.label :password_confirmation %><br />
+            <%= form.password_field :password_confirmation, placeholder: 'new-password', id: "new-password", class: "form-control mb-4" %>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+            <br>
+            <%= form.label :現在のパスワード（上記に変更点がある場合は入力してください） %></i><br />
+            <%= form.password_field :current_password, placeholder: 'current_password', id: "current_password", class: "form-control mb-4" %>
+       
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">設定を変更する</button>
+
+            <div class='row justify-content-center'>
+              <%= link_to "Back", :back, class: 'btn btn-outline-secondary' %>
+            </div>
+
+            </div>
+          </form>
+          <!-- Default form register -->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </section>
+    <!--Section: Content-->
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
