@@ -4,18 +4,19 @@
 
 <div class="container">
   <h1>chat room</h1>
+  <div id ='messages'>
+    <ul class="list-group message-main">
+    <%= render @messages %>
+    </ul>
+  </div>
   <form class='form-inline'>
     <div class='form-group'>
       <input type="text" class="form-control" id='chat-input'/>
     </div>
     <button id="button" class="btn btn-primary">送信</button>
   </form>
-  <div id ='messages'>
-    <ul class="list-group">
-    <%= render @messages %>
-    </ul>
-  </div>
 </div>
+
 
 
 

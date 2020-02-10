@@ -10,10 +10,10 @@
   <%# binding.irb %>
 
   <!-- 80000000はとりあえず存在しない様な値を入れている -->
-  <% if message.user.id == (user_id ||= message.user.id ) %>
+  <% if message.user == current_user %>
     <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= message.read ? '既読' : '未読' %>
   <% end %>
-
 </li>
 
 <!-- 

@@ -17,7 +17,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   speak: function(content) {
-    return this.perform('speak', {message: content, user_id: gon.current_user.id, conversation_id: gon.conversation.id});
+    return this.perform('speak', {message: content, conversation_id: gon.conversation.id, current_user: gon.current_user});
   }
 });
 
