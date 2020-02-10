@@ -1,31 +1,58 @@
 <p id="notice"><%= notice %></p>
+  <div class="container my-5 py-5 z-depth-1">
+    <!--Section: Content-->
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center text-center text-lg-left dark-grey-text">
+        <!--Grid column-->
+        <div class="col-md-6">
+          <!-- Default form register -->
+          <div class="text-center">
 
-<h1>掲示板一覧</h1>
+            <p class="h4 mb-4">スレッド一覧</p>
+            <div class="form-row mb-4">
+            </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>掲示板名</th>
-      <th>紹介文</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+            <ul>
+              <% @boards.each do |board| %>
+                <li class="card board-index"><%= link_to board.title, board, class: "btn btn-outline-secondary waves-effect" %>
+                <%= board.content.truncate(24, omission: '...') %>
+                  <% if current_user.id == board.user_id %>
+                    <p><%= link_to 'Edit', edit_board_path(board) %>
+                    <%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                  <% end %>
+                </li>
+                <br>
+              <% end %>
 
-  <tbody>
-    <% @boards.each do |board| %>
-      <tr>
-        <td><%= board.title %></td>
-        <td><%= board.content %></td>
-        <td><%= link_to 'Show', board %></td>
-        <% if current_user.id == board.user_id %>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            </ul>
 
-<br>
 
-<%= link_to 'New board', new_board_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+              
+            <br><br><br>
+            <%= link_to 'New board', new_board_path, class: "btn btn-outline-info waves-effect"%>
+            <br><br>
+            <div class='row justify-content-center'>
+            <p><%= paginate @boards %></p>
+            </div>
+          </div>
+
+          <!-- Default form register -->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    <!--Section: Content-->
+  </div>
+

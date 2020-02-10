@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table th {
+  width: 100rem;
+}
+
+table td {
+  height: 3rem;
+}
+
+.board-index {
+  background-color: #c0c0c0;
+}
+
 .board-card {
   background-color: #e6f1ff;
 }
@@ -10,3 +22,7 @@
   color: white;
 }
 
+.responses-main {
+  height: 25rem;
+  overflow: scroll;
+}

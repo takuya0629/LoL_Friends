@@ -4,15 +4,18 @@
 
 <div class="container">
   <h1><%= "#{@board.title}" %></h1>
+
+  <h2><%= "#{@board.content}" %></h2>
+  <div id ='responses'>
+    <ul class="list-group responses-main">
+    <%= render @responses %>
+    </ul>
+  </div>
+
   <form class='form-inline'>
     <div class='form-group'>
       <input type="text" class="form-control" id='response-input'/>
     </div>
     <button id="board-button" class="btn btn-primary">送信</button>
   </form>
-  <div id ='responses'>
-    <ul class="list-group">
-    <%= render @responses %>
-    </ul>
-  </div>
 </div>

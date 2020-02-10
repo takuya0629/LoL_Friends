@@ -3,7 +3,7 @@ class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
 
   def index
-    @boards = Board.all
+    @boards = Board.all.page(params[:page]).per(5)
   end
 
   def show
