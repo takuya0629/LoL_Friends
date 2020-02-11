@@ -11,10 +11,20 @@
   margin-top: 2rem;
 }
 
+.usersearch-card {
+  background-color: #e6fce9;
+}
+
 #user_search_result {
-  background-color: #87a89b;
+  background-color: #e6fce9;
+  border: solid 3px;
+  border-color: darkgreen;
 }
 
 .search_response {
   text-align: center;
+}
+
+.find-user {
+  display: block;
 }

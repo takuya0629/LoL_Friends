@@ -7,12 +7,23 @@
     <% end %>
   <% elsif %>
     <%= link_to( mail_box_conversation_path, { class: "btn btn-outline-primary waves-effect"} ) do %>
-      <i class="fas fa-mail-bulk"></i>メールボックス
+      <i class="fas fa-mail-bulk"></i> メールボックス
     <% end %>
-    <%= link_to '設定変更はこちら', edit_user_registration_path, class: "btn btn-outline-secondary waves-effect" %>
+    <%= link_to edit_user_registration_path, class: "btn btn-outline-secondary waves-effect" do %>
+      <i class="fas fa-user-cog"> 設定変更</i>
+    <% end %>
+    <%= link_to edit_user_registration_path, class: "btn btn-outline-default waves-effect" do %>
+      <i class="far fa-thumbs-up"> フォロー/フォロワー一覧</i>
+    <% end %>
+    <%= link_to edit_user_registration_path, class: "btn btn-outline-danger waves-effect" do %>
+      <i class="fab fa-fort-awesome"> マイグループ</i>
+    <% end %>
   <% end %>
   </span>
 </div>
+
+
+
 
 <div class="container card mypage">
   <div class="row justify-content-center main_area">

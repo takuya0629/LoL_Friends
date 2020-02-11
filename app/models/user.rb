@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :avater
-  has_many :boards
-  has_many :responses
+  has_many :boards, dependent: :destroy
+  has_many :responses, dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :users_in_groups, through: :join_groups, source: :group
   has_many :groups, foreign_key: :owner_id
   has_many :judgements, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :sender_conversations, class_name: 'Conversation', foreign_key: 'sender_id', dependent: :destroy
+  has_many :recipient_conversations, class_name: 'Conversation', foreign_key: 'recipient_id', dependent: :destroy
 
   validates :name, presence: :true, uniqueness: { case_sensitive: false }
   # Include default devise modules. Others available are:
