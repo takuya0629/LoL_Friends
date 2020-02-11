@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: 'summonersearches#search'
+  get 'user_search', to: 'users#user_search'
 
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail", as: :user

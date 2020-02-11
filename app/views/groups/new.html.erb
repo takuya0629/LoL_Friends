@@ -33,24 +33,24 @@
               <div class="card-body z-depth-2 px-4 board-card">
             <!-- グループ名 -->
             <div class="md-form mt-3">
-              <i class="fas fa-pencil-alt prefix cyan-text "></i>
+              <i class="fas fa-pencil-alt prefix purple-text "></i>
               <label for="group-form1">グループ名</label>
               <%= form.text_field :name, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-              <i class="fas fa-star prefix cyan-text"></i>
+              <i class="fas fa-star prefix purple-text"></i>
               <label for="board-form2">内容</label>
               <%= form.text_field :introduction, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
             </div>
 
             <div class="md-form">
-              <i class="far fa-image prefix cyan-text"></i>
+              <i class="far fa-image prefix purple-text"></i>
               <%= form.file_field :icon, autocomplete: "off", class: "session-form", id: "group_icon" %>
             </div>
                 <div class="text-center my-3">
-                  <button class="btn btn-info btn-block my-4" type="submit">スレッド作成！</button>
+                  <button class="btn btn-secondary btn-block my-4" type="submit">スレッド作成！</button>
                 </div>
               </div>
               </div>

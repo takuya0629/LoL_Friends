@@ -13,4 +13,6 @@ class SummonersearchesController < ApplicationController
     profile_icon(@summoner_main_data)
     match_game if @summoner_name.present?
   end
+
+  
 end
