@@ -2,7 +2,7 @@
   <p><%= "#{group_message.user.name} 投稿時間：#{group_message.message_time}"%></p>
   
   <% if group_message.user.avater.attached? %>
-    <%= image_tag url_for(group_message.user.avater), size: '80x80' %>
+    <%= image_tag url_for(group_message.user.avater), size: '40x40' %>
   <% end %>
   
   <p style="display: inline"><%= group_message.content %></p>

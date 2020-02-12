@@ -9,7 +9,7 @@
     <!-- Section description -->
     <p class="lead text-center w-responsive mx-auto mt-4 pt-2 mb-5">
       <% if current_user == @group.join_group_users.find_by(id: current_user.id) %>
-        <%= link_to group_message_index_path(@group), class: "btn btn-outline-deep-purple waves-effect" do %>
+        <%= link_to group_group_messages_path(@group), class: "btn btn-outline-deep-purple waves-effect" do %>
         <i class="far fa-paper-plane "></i> グループチャット
         <% end %>
       <% elsif @group.approval_system == true %>

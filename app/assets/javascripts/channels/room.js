@@ -8,7 +8,7 @@ document.addEventListener("turbolinks:load", function() {
     },
 
     received: function(message) {
-      const messages = document.getElementById('messages')
+      const messages = document.getElementById('message-area')
       messages.innerHTML += message
     },
 
@@ -22,9 +22,7 @@ document.addEventListener("turbolinks:load", function() {
   button.addEventListener('click', function(){
     const content = input.value
     App.room.speak(content)
-    console.log("Before reload")
     location.reload();
-    console.log("After reload")
     input.value = ""
   })
   

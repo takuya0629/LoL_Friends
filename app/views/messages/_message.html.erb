@@ -2,7 +2,7 @@
   <p><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
   
   <% if message.user.avater.attached? %>
-    <%= image_tag url_for(message.user.avater), size: '80x80' %>
+    <%= image_tag url_for(message.user.avater), size: '40x40' %>
   <% end %>
   
   <p style="display: inline"><%= message.content %></p>

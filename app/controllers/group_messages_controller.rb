@@ -1,6 +1,6 @@
 class GroupMessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group
+  before_action :set_group, only: :index
 
   def index
     @group_messages = @group.group_messages.order(:created_at)
@@ -22,7 +22,14 @@ class GroupMessagesController < ApplicationController
 
     @group_messages = @group.group_messages.order(:created_at)
     @group_message = @group.group_messages.build
+  end
 
+  def destroy
+    @group_message = GroupMessage.find(params[:id])
+    group = @group_message.group
+    @group_message.destroy
+    flash[:success] = '投稿を削除しました'
+    redirect_to group_group_messages_path(group)
   end
 
   private

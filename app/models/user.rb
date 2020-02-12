@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :join_groups, dependent: :destroy
+  has_many :my_groups, through: :join_groups, class_name: 'Group', source: :group
   has_many :users_in_groups, through: :join_groups, source: :group
   has_many :groups, foreign_key: :owner_id
   has_many :judgements, dependent: :destroy

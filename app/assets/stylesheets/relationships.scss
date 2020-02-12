@@ -5,10 +5,36 @@
 .follow-image h3 {
   position: absolute;/*絶対配置*/
   color: white;/*文字は白に*/
-  top: 0;
-  left: 0;
-  }
+  font-weight: bold; /*太字に*/
+  font-family: cursive;
+  font-size: 5em;/*サイズ5倍*/
+  top: 10rem;
+  left: 2rem;
+}
+
 
 .follow-image img {
   width: 100%;
-  }
+}
+
+.follower-image h3 {
+  position: absolute;/*絶対配置*/
+  color: white;/*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-family: cursive;
+  font-size: 5em;/*サイズ5倍*/
+  top: 2rem;
+  left: 2rem;
+}
+
+
+.follower-image img {
+  width: 100%;
+}
+
+.overlay .mask {
+    opacity: 0.7;
+}
+.overlay .mask:hover {
+    opacity: 0.7;
+}
