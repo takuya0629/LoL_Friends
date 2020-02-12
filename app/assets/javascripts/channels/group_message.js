@@ -16,12 +16,14 @@ document.addEventListener("turbolinks:load", function() {
     },
   });
 
-  const input = document.getElementById('group-chat-input')
-  const button = document.getElementById('group-chat-button')
-  button.addEventListener('click', function(){
-    const content = input.value
-    App.group_message.speak(content)
-    location.reload();
-    input.value = ""
-  })
+  if (document.getElementById('group-chat-button') && document.getElementById('group-chat-input')) {
+    const input = document.getElementById('group-chat-input')
+    const button = document.getElementById('group-chat-button')
+    button.addEventListener('click', function(){
+      const content = input.value
+      App.group_message.speak(content)
+      location.reload();
+      input.value = ""
+    })
+  }
 })

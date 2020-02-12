@@ -13,6 +13,8 @@ document.addEventListener("turbolinks:load", function() {
       return this.perform('speak', {response: content, user_id: gon.current_user.id, board_id: gon.board.id});
     },
   });
+
+  if (document.getElementById('board-button') && document.getElementById('response-input')) {
   const input = document.getElementById('response-input')
   const button = document.getElementById('board-button')
   button.addEventListener('click', function(){
@@ -20,5 +22,6 @@ document.addEventListener("turbolinks:load", function() {
     App.board.speak(content)
     location.reload();
     input.value = ""
-  })
+    })  
+  }
 })
