@@ -1,0 +1,13 @@
+<li class="list-group-item">
+  <p><%= "#{group_message.user.name} 投稿時間：#{group_message.message_time}"%></p>
+  
+  <% if group_message.user.avater.attached? %>
+    <%= image_tag url_for(group_message.user.avater), size: '80x80' %>
+  <% end %>
+  
+  <p style="display: inline"><%= group_message.content %></p>
+
+  <% if group_message.user == current_user %>
+    <%= link_to '削除', group_message_path(group_message), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</li>

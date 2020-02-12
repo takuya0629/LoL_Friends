@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :sender_conversations, class_name: 'Conversation', foreign_key: 'sender_id', dependent: :destroy
   has_many :recipient_conversations, class_name: 'Conversation', foreign_key: 'recipient_id', dependent: :destroy
+  has_many :group_messages, dependent: :destroy
 
   validates :name, presence: :true, uniqueness: { case_sensitive: false }
   # Include default devise modules. Others available are:

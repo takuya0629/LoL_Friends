@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   registrations: 'users/registrations'
   }
 
-  resources :groups do 
+  resources :groups do
+    resources :group_messages, only: [:create, :destroy, :index, :show]
     member do
       patch 'change_approval_system'
     end
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: 'summonersearches#search'
+  # get 'searchs', to: 'summonersearches#index'
   get 'user_search', to: 'users#user_search'
 
   devise_scope :user do

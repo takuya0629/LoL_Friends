@@ -14,5 +14,9 @@ class SummonersearchesController < ApplicationController
     match_game if @summoner_name.present?
   end
 
+  def index
+    
+  end
+
   
 end

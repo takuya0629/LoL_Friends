@@ -11,9 +11,11 @@
           <% if user_signed_in? %>
             <li><%= link_to "マイページ", user_path(current_user), class: "nav-link active" %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: "nav-link" %></li>
+            <li><%= link_to "ユーザー検索", user_search_path, class: "nav-link" %></li>
           <% elsif %>
           <li><a class="nav-link" href="/users/sign_up">新規登録 </a></li>
           <li><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+
         <% end %>
 
         <li class="nav-item dropdown">

@@ -1,13 +1,12 @@
-
 <% if @over_ten %>
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
 
 <div class="container">
   <h1>chat room</h1>
-  <div id ='messages'>
+  <div id ='group_messages'>
     <ul class="list-group message-main">
-    <%= render @messages %>
+    <%= render @group_messages %>
     </ul>
   </div>
   <form class='form-inline'>
