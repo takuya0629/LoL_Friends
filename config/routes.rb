@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
 
   resources :groups do
-    resources :group_messages, only: [:create, :destroy, :index, :show]
+    resources :group_messages, only: [:create, :destroy, :index], as: :message
     member do
       patch 'change_approval_system'
     end

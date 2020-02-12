@@ -1,36 +1,27 @@
-class Group@group_messagesController < ApplicationController
+class GroupMessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group
 
   def index
-
-  end
-
-  def show
-    @group_message = @group.group_messages.order(:created_at)
+    @group_messages = @group.group_messages.order(:created_at)
     gon.current_user = current_user
     gon.group = @group
     gon.avater = current_user.avater
 
-
     if @group_messages.length > 10
 
       @over_ten = true
-      # @@group_messages = @group_message.where(id: @@group_messages.last(10).map{|msg| msg.id})
-      @group_messages = @group_message.where(id: @group_messages[-10..-1].pluck(:id))
+      # @group_messages = @group_message.where(id: @group_messages.last(10).map{|msg| msg.id})
+      @group_messages = @group_messages.where(id: @group_messages[-10..-1].pluck(:id))
     end
 
     if params[:m]
       @over_ten = false
-      @group_messages = @conversation.@group_messages
+      @group_messages = @group.group_messages
     end
 
-    if @group_messages.last
-      @group_messages.where.not(user_id: current_user.id).update_all(read: true)
-    end
-
-    @group_messages = @@group_messages.order(:created_at)
-    @group_message = @conversation.@group_messages.build
+    @group_messages = @group.group_messages.order(:created_at)
+    @group_message = @group.group_messages.build
 
   end
 

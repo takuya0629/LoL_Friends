@@ -8,21 +8,19 @@
     <hr class="w-header">
     <!-- Section description -->
     <p class="lead text-center w-responsive mx-auto mt-4 pt-2 mb-5">
-      <% if @group.approval_system == true %>
-        <%= "このグループへの参加は許可制です" %>
-
-        <% unless @group.join_group_users.find_by(id: current_user.id) %>
-          <%= link_to judgements_path(group_id: @group.id),method: :post, data: { confirm: '加入申請しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
-            <i class="far fa-paper-plane "></i> 加入申請をする
-          <% end %>
-        <% end -%>
+      <% if current_user == @group.join_group_users.find_by(id: current_user.id) %>
+        <%= link_to group_message_index_path(@group), class: "btn btn-outline-deep-purple waves-effect" do %>
+        <i class="far fa-paper-plane "></i> グループチャット
+        <% end %>
+      <% elsif @group.approval_system == true %>
+        <%= "このグループへの参加は許可制です" %>       
+        <%= link_to judgements_path(group_id: @group.id),method: :post, data: { confirm: '加入申請しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
+          <i class="far fa-paper-plane "></i> 加入申請をする
+        <% end %>
       <% else %>
         <%= "このグループへの参加は自由です" %>
-        <% unless @group.join_group_users.find_by(id: current_user.id) %>
-
-          <%= link_to join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
+        <%= link_to join_groups_path(group_id: @group.id), method: :post, data: { confirm: '参加しますか？' }, class: "btn btn-outline-primary waves-effect" do %>
             <i class="fas fa-plus-square"></i> 参加する
-          <% end %>
         <% end %>
       <% end %>
     </p>
@@ -120,3 +118,4 @@
     <% end %>
   </div>
 </div>
+
