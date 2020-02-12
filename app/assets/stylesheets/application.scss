@@ -10,11 +10,15 @@
 @import "./relationships";
 
 body {
-  background-color: #c0c0c0;
+  background-image: url('star.jpg');
   font-family: メイリオ;
 }
 
 .back-image {
+  height: 100vh;
+}
+
+.search-back-image {
   height: 150vh;
 }
 

@@ -6,16 +6,20 @@
   <% end %>
   
   <p style="display: inline"><%= message.content %></p>
-  <%# if message.user == current_user %>
-  <%# binding.irb %>
 
-  <!-- 80000000はとりあえず存在しない様な値を入れている -->
   <% if message.user == current_user %>
+    <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= message.read ? '既読' : '未読' %>
+  <% end %>
+
+  <% sender_id ||= nil %>
+  <% if sender_id %>
     <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
     <%= message.read ? '既読' : '未読' %>
   <% end %>
 </li>
 
+<!-- "http://localhost:3000/conversations/5/messages?" -->
 <!-- 
 <li class="list-group-item">
   <p><%#= "#{message.user.name} 投稿時間：#{message.message_time}" %></p>
@@ -30,3 +34,4 @@
     <%# end %>
   <%# end %>
 </li> -->
+

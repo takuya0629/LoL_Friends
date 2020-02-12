@@ -17,13 +17,24 @@ document.addEventListener("turbolinks:load", function() {
     },
   });
   
-  const input = document.getElementById('chat-input')
-  const button = document.getElementById('button')
-  button.addEventListener('click', function(){
-    const content = input.value
-    App.room.speak(content)
-    location.reload();
-    input.value = ""
-  })
+  // const input = document.getElementById('chat-input')
+  // const button = document.getElementById('button')
+
+  // button.addEventListener('click', function(){
+  //   const content = input.value
+  //   App.room.speak(content)
+  //   location.reload();
+  //   input.value = ""
+  // })
   
+  if (document.getElementById('button') && document.getElementById('chat-input')) {
+    const input = document.getElementById('chat-input')
+    const button = document.getElementById('button')
+    button.addEventListener('click', function(){
+      const content = input.value
+      App.room.speak(content)
+      location.reload();
+      input.value = ""
+    })  
+  }
 })

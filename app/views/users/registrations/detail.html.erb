@@ -6,16 +6,16 @@
       <i class="fas fa-envelope"></i>メッセージを送る
     <% end %>
   <% elsif %>
-    <%= link_to( mail_box_conversation_path, { class: "btn btn-outline-primary waves-effect"} ) do %>
+    <%= link_to( mail_box_conversation_path, { class: "btn btn-primary waves-effect"} ) do %>
       <i class="fas fa-mail-bulk"></i> メールボックス
     <% end %>
-    <%= link_to edit_user_registration_path, class: "btn btn-outline-secondary waves-effect" do %>
+    <%= link_to edit_user_registration_path, class: "btn btn-secondary waves-effect" do %>
       <i class="fas fa-user-cog"> 設定変更</i>
     <% end %>
-    <%= link_to relationships_path, class: "btn btn-outline-default waves-effect" do %>
+    <%= link_to relationships_path, class: "btn btn-warning waves-effect" do %>
       <i class="far fa-thumbs-up"> フォロー/フォロワー一覧</i>
     <% end %>
-    <%= link_to my_group_path, class: "btn btn-outline-danger waves-effect" do %>
+    <%= link_to my_group_path, class: "btn btn-success waves-effect" do %>
       <i class="fab fa-fort-awesome"> マイグループ</i>
     <% end %>
   <% end %>
