@@ -13,12 +13,16 @@
     <% end %>
 <!-- Main navigation -->
   <!-- Full Page Intro -->
-  <section style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zac_2.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class='test'>
+    <div class="view overlay rounded z-depth-1-half board-image">
+      <section style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zac_2.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class='back-image'>
+      <div class="mask pattern-5">
+      </div>
+    
+
     <!-- Mask & flexbox options-->
-    <div class="mask d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center">
       <!-- Content -->
       <div class="container py-5 my-5">
-        <h3 class="font-weight-bold text-center white-text pb-2 ">スレッドを建てる</h3>  
         
         <p class="lead text-center white-text pt-2 mb-5"></p>
         
@@ -32,6 +36,7 @@
                 <!-- Name -->
                 <div class="md-form mt-3">
                   <i class="fas fa-pencil-alt prefix cyan-text "></i>
+                  <h3 class="font-weight-bold mb-3">Board New!</h3>
                   <label for="board-form1">スレッド名</label>
                   <%= f.text_field :title, autocomplete: "off", autofocus: "true", class: "form-control session-form", id: "board-form1" %>
                 </div>
@@ -58,6 +63,7 @@
     <!-- Mask & flexbox options-->
     <br><br><br><br>
   </section>
+  </div>
   <!-- Full Page Intro -->
 <!-- Main navigation -->
 <% end %>

@@ -7,6 +7,25 @@
   border-radius: 1rem;
 }
 
-.group-main {
-  
+
+.board-new-title {
+  font-family: cursive;
+}
+
+.group-new-image {
+  position: relative;
+}
+
+.group-new-image h3 {
+  position: absolute;/*絶対配置*/
+  color: aliceblue;/*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-family: cursive;
+  font-size: 5em;/*サイズ5倍*/
+  bottom: 5rem;
+}
+
+
+.group-new-image img {
+  width: 100%;
 }

@@ -30,3 +30,25 @@ table td {
 .board-main {
   background-color: darkgray;
 }
+
+.board-new-title {
+  font-family: cursive;
+}
+
+.board-image {
+  position: relative;
+}
+
+.board-image h3 {
+  position: absolute;/*絶対配置*/
+  color: white;/*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-family: cursive;
+  font-size: 5em;/*サイズ5倍*/
+  bottom: 5rem;
+}
+
+
+.board-image img {
+  width: 100%;
+}
