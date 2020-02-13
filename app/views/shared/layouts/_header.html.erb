@@ -7,7 +7,7 @@
   </button>
     <div class="collapse navbar-collapse" id="Navbar">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item active header-link">
           <% if user_signed_in? %>
             <li><%= link_to "マイページ", user_path(current_user), class: "nav-link active" %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: "nav-link active" %></li>
