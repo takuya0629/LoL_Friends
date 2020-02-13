@@ -1,8 +1,16 @@
+<style>
+body {
+  background-image:none;
+  background-color: darkgray;
+}
+</style>
+
+
 <div class="container">
-  <div id="input-search" class="row justify-content-center">
+  <div class="row justify-content-center">
     <%= form_with(url: search_path, method: :get, local: true) do |f| %>
-      <%= f.text_field :search %>
-      <%= f.submit "search", class: 'btn-one'%>
+      <%= f.text_field :search, placeholder: 'サモナー検索...', class: 'summoner_search-form' %>
+      <%= f.submit "search", class: 'btn btn-one'%>
     <% end %>
   </div>
 

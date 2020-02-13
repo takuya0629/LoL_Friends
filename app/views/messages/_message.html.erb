@@ -1,37 +1,43 @@
-<li class="list-group-item">
-  <p><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
-  
-  <% if message.user.avater.attached? %>
-    <%= image_tag url_for(message.user.avater), size: '40x40' %>
-  <% end %>
-  
-  <p style="display: inline"><%= message.content %></p>
+  <li class="list-group-item ">
+    <% if message.user != current_user %>
+      <div>
+        <p><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
+    <% elsif %>
+      <div class="right">
+        <p class='my-message'><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
+    <% end %>
 
-  <% if message.user == current_user %>
-    <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= message.read ? '既読' : '未読' %>
-  <% end %>
+      <div>
+        <% if message.user.avater.attached? %>
+          <% if message.user == current_user %>
+            <%= image_tag url_for(message.user.avater), size: '40x40', class: 'my-image' %>
+          <% else %>
+            <%= image_tag url_for(message.user.avater), size: '40x40' %>
+          <% end %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+        <% end %>
+      
+        <% if message.user != current_user %>
+          <p style="display: inline", class='chat-hukidasi'><%= message.content %></p>
+        <% else %>
+          <p style="display: inline", class='chat-hukidasi my-hukidasi'><%= message.content %></p>
+        <% end %>
+        <% if message.user == current_user %>
+          <div class="message-status">
+            <%= link_to '削除',  message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= message.read ? '既読' : '未読' %>
+          </div>
+        <% end %>
 
-  <% sender_id ||= nil %>
-  <% if sender_id %>
-    <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= message.read ? '既読' : '未読' %>
-  <% end %>
-</li>
-
-<!-- "http://localhost:3000/conversations/5/messages?" -->
-<!-- 
-<li class="list-group-item">
-  <p><%#= "#{message.user.name} 投稿時間：#{message.message_time}" %></p>
-  <%# if message.user.avater.attached? %>
-    <%#= image_tag message.user.avater, size: '80x80' %>
-  <%# end %>
-  <p style="display: inline"><%= message.content %></p>
-  
-    <%#= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%# if message.user == current_user %>
-      <%#= message.read ? '既読' : '未読' %>
-    <%# end %>
-  <%# end %>
-</li> -->
-
+        <% sender_id ||= nil %>
+        <% if sender_id %>
+          <div class="message-status">
+            <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= message.read ? '既読' : '未読' %>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </li>

@@ -6,7 +6,7 @@ document.addEventListener("turbolinks:load", function() {
     disconnected: function() {
     },
     received: function(response) {
-      const responses = document.getElementById('responses')
+      const responses = document.getElementById('responses-area')
       responses.innerHTML += response
     },
     speak: function(content) {

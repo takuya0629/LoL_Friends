@@ -2,6 +2,10 @@
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
 
+<% if @group_message.errors.any? %>
+   <p>エラーでーす。</p>
+<% end %>
+
 <div class="container">
   <h1>グループチャット</h1>
   <div id ='group_messages'>

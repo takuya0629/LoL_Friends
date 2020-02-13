@@ -20,7 +20,7 @@ class GroupMessagesController < ApplicationController
       @group_messages = @group.group_messages
     end
 
-    @group_messages = @group.group_messages.order(:created_at)
+    @group_messages = @group_messages.order(:created_at)
     @group_message = @group.group_messages.build
   end
 
