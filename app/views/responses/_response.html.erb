@@ -1,7 +1,35 @@
-<li class="list-group-item">
-  <p><%= "#{response.user.name} 投稿時間：#{response.response_time}"%></p>
-  <% if response.user.avater.attached? %>
-    <%= image_tag url_for(response.user.avater), size: '80x80' %>
-  <% end %>
-  <p style="display: inline"><%= response.content %></p>
-</li>
+  <li class="list-group-item ">
+    <% if response.user != current_user %>
+      <div>
+        <p><%= "#{response.user.name} 投稿時間：#{response.response_time}"%></p>
+    <% elsif %>
+      <div class="right">
+        <p class='my-message'><%= "#{response.user.name} 投稿時間：#{response.response_time}" %></p>
+    <% end %>
+
+      <div>      
+        <% if response.user == current_user %>
+          <% if response.user.avater.attached? %>
+            <%= image_tag url_for(response.user.avater), size: '40x40', class: 'my-image' %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+          <% end %>
+        <% elsif response.user.avater.attached? %>
+          <%= image_tag url_for(response.user.avater), size: '40x40' %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: '40x40' %>
+        <% end %>
+
+        <% if response.user != current_user %>
+          <p style="display: inline", class='chat-hukidasi'><%= response.content %></p>
+        <% else %>
+          <p style="display: inline", class='chat-hukidasi my-hukidasi'><%= response.content %></p>
+        <% end %>
+        <% if response.user == current_user %>
+          <div class="message-status">
+            <%= link_to '削除',  board_response_path(response), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </li>

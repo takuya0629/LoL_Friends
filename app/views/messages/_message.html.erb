@@ -12,7 +12,7 @@
           <% if message.user.avater.attached? %>
             <%= image_tag url_for(message.user.avater), size: '40x40', class: 'my-image' %>
           <% else %>
-            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image'%>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
           <% end %>
         <% elsif message.user.avater.attached? %>
           <%= image_tag url_for(message.user.avater), size: '40x40' %>

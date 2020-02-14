@@ -7,17 +7,19 @@
         <p class='my-message'><%= "#{group_message.user.name} 投稿時間：#{group_message.message_time}"%></p>
     <% end %>
 
-      <div>
-        <% if group_message.user.avater.attached? %>
-          <% if group_message.user == current_user %>
+      <div>      
+        <% if group_message.user == current_user %>
+          <% if group_message.user.avater.attached? %>
             <%= image_tag url_for(group_message.user.avater), size: '40x40', class: 'my-image' %>
           <% else %>
-            <%= image_tag url_for(group_message.user.avater), size: '40x40' %>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
           <% end %>
+        <% elsif group_message.user.avater.attached? %>
+          <%= image_tag url_for(group_message.user.avater), size: '40x40' %>
         <% else %>
           <%= image_tag 'no_image.png', size: '40x40' %>
         <% end %>
-      
+
         <% if group_message.user != current_user %>
           <p style="display: inline", class='chat-hukidasi'><%= group_message.content %></p>
         <% else %>
