@@ -8,20 +8,22 @@
     <% end %>
 
       <div>
-        <% if message.user.avater.attached? %>
-          <% if message.user == current_user %>
+        <% if message.user == current_user %>
+          <% if message.user.avater.attached? %>
             <%= image_tag url_for(message.user.avater), size: '40x40', class: 'my-image' %>
           <% else %>
-            <%= image_tag url_for(message.user.avater), size: '40x40' %>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image'%>
           <% end %>
+        <% elsif message.user.avater.attached? %>
+          <%= image_tag url_for(message.user.avater), size: '40x40' %>
         <% else %>
-          <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+          <%= image_tag 'no_image.png', size: '40x40' %>
         <% end %>
       
         <% if message.user != current_user %>
-          <p style="display: inline", class='chat-hukidasi'><%= message.content %></p>
+          <p class='chat-hukidasi'><%= message.content %></p>
         <% else %>
-          <p style="display: inline", class='chat-hukidasi my-hukidasi'><%= message.content %></p>
+          <p class='chat-hukidasi my-hukidasi'><%= message.content %></p>
         <% end %>
         <% if message.user == current_user %>
           <div class="message-status">

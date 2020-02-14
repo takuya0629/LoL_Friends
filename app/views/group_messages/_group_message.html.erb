@@ -15,7 +15,7 @@
             <%= image_tag url_for(group_message.user.avater), size: '40x40' %>
           <% end %>
         <% else %>
-          <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+          <%= image_tag 'no_image.png', size: '40x40' %>
         <% end %>
       
         <% if group_message.user != current_user %>
