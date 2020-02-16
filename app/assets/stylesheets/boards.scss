@@ -1,0 +1,59 @@
+// Place all the styles related to the boards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table th {
+  width: 100rem;
+}
+
+table td {
+  height: 3rem;
+}
+
+.board-index {
+  background-color: #c0c0c0;
+}
+
+.board-card {
+  background-color: #e6f1ff;
+}
+
+#defaultLoginFormId, #defaultLoginFormPassword {
+  color: white;
+}
+
+.responses-main {
+  height: 25rem;
+  overflow: scroll;
+}
+
+.board-main {
+  background-color: darkgray;
+}
+
+.board-new-title {
+  font-family: cursive;
+}
+
+.board-image {
+  position: relative;
+}
+
+.board-image h3 {
+  position: absolute;/*絶対配置*/
+  color: white;/*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-family: cursive;
+  font-size: 5em;/*サイズ5倍*/
+  bottom: 5rem;
+}
+
+
+.board-image img {
+  width: 100%;
+}
+
+#responses-area {
+  height: 25rem;
+  overflow: scroll;
+}

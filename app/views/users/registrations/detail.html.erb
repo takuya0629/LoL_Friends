@@ -1,0 +1,75 @@
+<div class=container>
+  <span>
+  <% if @user.id != current_user.id %>
+    <%= render 'follow_form', user: @user %>
+    <%= link_to( conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-outline-primary waves-effect" ) do %>
+      <i class="fas fa-envelope"></i>メッセージを送る
+    <% end %>
+  <% elsif %>
+    <%= link_to( mail_box_conversation_path, { class: "btn btn-primary waves-effect"} ) do %>
+      <i class="fas fa-mail-bulk"></i> メールボックス
+    <% end %>
+    <%= link_to edit_user_registration_path, class: "btn btn-secondary waves-effect" do %>
+      <i class="fas fa-user-cog"> 設定変更</i>
+    <% end %>
+    <%= link_to relationships_path, class: "btn btn-warning waves-effect" do %>
+      <i class="far fa-thumbs-up"> フォロー/フォロワー一覧</i>
+    <% end %>
+    <%= link_to my_group_path, class: "btn btn-success waves-effect" do %>
+      <i class="fab fa-fort-awesome"> マイグループ</i>
+    <% end %>
+  <% end %>
+  </span>
+</div>
+
+
+
+
+<div class="container card mypage">
+  <div class="row justify-content-center main_area">
+    <div class="col-sm-5">
+      <%= "#{@user.name}さんのマイページです。" %>
+      <br><br>
+      <% if @user.avater.attached? %>
+        <%= image_tag @user.avater, size: '350x350', class: "animated swing" %>
+      <% else %>
+        <%= image_tag "no_image.png", size: '350x350' %>
+      <% end %>
+      <br><br><br><br>
+    </div> 
+
+    <div class="col-sm-4">
+      <% if @user.favorite_summoner.present? %>
+      <p>お気に入りサモナー</p>
+      <br><br>
+
+        <div class="favorite_summoner_area">
+          <% if @user.favorite_summoner.present? %>
+            <p><%= image_tag @icon, size: '50x50', class: "animated bounce" %>
+            <%= @summoner_main_data['name']%></p>
+            <% if @rank_data.present? %>
+              <%= image_tag "#{@rank_data[0]['tier'].downcase}.png", size: '50x50', class: "animated bounce" %>
+              <%= "#{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
+              <%= "#{@rank_data[0]['leaguePoints']}LP" %>
+              <br><br><br><br>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <% if @user == current_user %>
+          <p>お気に入りサモナーを登録してみよう！</p>
+        <% else %>
+          <%= "#{@user.name}さんのお気に入りサモナーは登録されていません。" %>
+        <% end %>
+      <% end %>
+      <div class="card border-info mb-3" style="max-width: 22rem;">
+        <div class="card-body text-info">
+          <h5 class="card-title">profile</h5>
+          <p class="card-text"><%= "#{@user.introduction}" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+
+ 

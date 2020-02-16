@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark header">
+  <%= link_to root_path, class: "navbar-brand title" do %>
+    <i class="fas fa-dragon red-text"></i> LOL friend's
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="Navbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active header-link">
+          <% if user_signed_in? %>
+            <li><%= link_to "マイページ", user_path(current_user), class: "nav-link active" %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: "nav-link active" %></li>
+            <li><%= link_to "ユーザー検索", user_search_path, class: "nav-link active" %></li>
+          <% elsif %>
+          <li><a class="nav-link" href="/users/sign_up">新規登録 </a></li>
+          <li><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+
+        <% end %>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">グループ</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <%= link_to "グループ一覧", groups_path, class: "dropdown-item" %>
+            <%= link_to "グループ作成", new_group_path, class: "dropdown-item" %>
+            <%= link_to "マイグループ", my_group_path, class: "dropdown-item" %>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">掲示板</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <%= link_to "掲示板一覧", boards_path, class: "dropdown-item" %>
+            <%= link_to "掲示板作成", new_board_path, class: "dropdown-item" %>
+            <%= link_to "マイグループ", groups_path, class: "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
+      <span id="btn-2" class="text-info btn-hidden btn-load">Click me!</span>
+      <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-md-0" do |f| %>
+        <%= f.text_field :search, placeholder: 'サモナー検索...', class: 'form-control mr-sm-2' %>
+        <%= f.submit '検索', class: 'btn btn-outline-success my-2 my-sm-0 btn-one' %>
+      <% end %>
+    </div>
+  </nav>

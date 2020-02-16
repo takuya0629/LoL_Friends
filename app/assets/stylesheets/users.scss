@@ -1,0 +1,38 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mypage {
+  
+  margin-top: 2rem;
+}
+
+.main_area {
+  margin-top: 2rem;
+}
+
+.usersearch-card {
+  background-color: #e6fce9;
+}
+
+#user_search_result {
+  background-color: #e6fce9;
+  border: solid 3px;
+  border-color: darkgreen;
+}
+
+.search_response {
+  text-align: center;
+}
+
+.find-user {
+  display: block;
+}
+
+.user-new-card {
+  background-color: antiquewhite;
+}
+
+.user-edit {
+  background-color: darkgrey
+}

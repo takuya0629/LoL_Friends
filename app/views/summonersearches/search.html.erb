@@ -1,0 +1,109 @@
+<style>
+body {
+  background-image:none;
+  background-color: darkgray;
+}
+</style>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+      <%= f.text_field :search, placeholder: 'サモナー検索...', class: 'summoner_search-form' %>
+      <%= f.submit "search", class: 'btn btn-one'%>
+    <% end %>
+  </div>
+
+  <% if @summoner_main_data && @summoner_main_data['name'] %>
+    <%= "サモナーネーム　#{@summoner_main_data['name']}" %>
+    <br>
+    <%= "レベル　#{@summoner_main_data['summonerLevel']}" %>
+    <br>
+    <%= image_tag @icon, size: '200x200' %>
+    <% if @rank_data.present? %>
+      <%= "ソロランク: #{@rank_data[0]['tier']}  #{@rank_data[0]['rank']}" %>
+      <%= image_tag("#{@rank_data[0]['tier'].downcase}.png") %>
+      <%= "#{@rank_data[0]['leaguePoints']}LP" %>
+      <br>
+      <%= "#{@rank_data[0]['wins']}勝 / #{@rank_data[0]['losses']}敗 " %>
+    <% elsif %>
+      <p>ソロランク: Unranked</p>
+    <% end %>
+
+    <% if @match_result.present? %>
+      <% @match_result.each do |m| %>
+          <% blue = m['participantIdentities'][0..4] %>
+          <% red = m['participantIdentities'][5..9] %>
+          <% blue_stats = m['participants'][0..4] %>
+          <% red_stats = m['participants'][5..9] %>
+          <!-- 検索対象サモナーを特定 -->
+          <% target = m['participantIdentities'].find { |x| x['player']['summonerName'].include?(@summoner_main_data['name']) }%>
+          <% main = m['participants'][target['participantId'] -1] %>
+          <div class=<%= "match_history_#{main['stats']['win']}" %>>
+          <div class="row">
+            <div class="col-lg-8">
+              <!-- ゲームモードの特定 -->
+              <%= game_type(m['queueId']) %>
+              <% if main['stats']['win'] == true %>
+                <p>勝利</p>
+              <% else %>
+                <p>敗北</p>
+              <% end %>
+              <div class='target_area container'>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <p class="splash img-fluid"><%= image_tag champ_splash(main['championId']), size: '450x250' %></p>
+                    <%= "#{main['stats']['kills']}kill /#{main['stats']['deaths']}death /#{main['stats']['assists']}assist" %>
+                    </div>
+                    <div class="col-sm-1">
+                    <!-- スペルの表示 -->
+                    <p><%= image_tag spell(main['spell1Id']), size: '40x40' %></p>
+                    <p><%= image_tag spell(main['spell2Id']), size: '40x40' %></p>
+                    <!-- ルーンの表示 -->
+                    <% rune(main['stats']['perk0'], main['stats']['perkPrimaryStyle'], main['stats']['perkSubStyle']) %>
+                    <p><%= image_tag @primary_icon, size: '40x40' %></p>
+                    <%= image_tag @sub_style_icon, size: '40x40' %>
+                    </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="col-2 blue_team">
+              <div>
+                <p class='team_title'>ブルーチーム</p>
+                <% b_names = blue.map do |b| %>        
+                  <% link_to b['player']['summonerName'], search_path(search: b['player']['summonerName']) %>
+                <% end %>
+              </div>
+              <div>
+                <% blue_stats.each.with_index do |b_stats, i| %>
+                  <%= b_names[i] %>
+                  <p><%= image_tag champ_icon(b_stats['championId']), size: '30x30' %>
+                  <%= "#{b_stats['stats']['kills']}/#{b_stats['stats']['deaths']}/#{b_stats['stats']['assists']}" %></p>
+          
+               <% end %>
+              </div>
+            </div>
+            <div class="col-2 red_team">
+              <div>
+                <p class='team_title'>レッドチーム</p>
+                <% r_names = red.map do |r| %>        
+                 <% link_to r['player']['summonerName'], search_path(search: r['player']['summonerName']) %>
+                <% end %>
+              </div>
+              <div class="champ_mini_icon">
+                <% red_stats.each.with_index do |r_stats, i| %>
+                  <%= r_names[i] %>
+                  <p><%= image_tag champ_icon(r_stats['championId']), size: '30x30' %>      
+                  <%= "#{r_stats['stats']['kills']}/#{r_stats['stats']['deaths']}/#{r_stats['stats']['assists']}" %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+

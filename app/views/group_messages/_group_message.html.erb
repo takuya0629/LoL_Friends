@@ -1,0 +1,35 @@
+  <li class="list-group-item ">
+    <% if group_message.user != current_user %>
+      <div>
+        <p><%= "#{group_message.user.name} 投稿時間：#{group_message.message_time}"%></p>
+    <% elsif %>
+      <div class="right">
+        <p class='my-message'><%= "#{group_message.user.name} 投稿時間：#{group_message.message_time}"%></p>
+    <% end %>
+
+      <div>      
+        <% if group_message.user == current_user %>
+          <% if group_message.user.avater.attached? %>
+            <%= image_tag url_for(group_message.user.avater), size: '40x40', class: 'my-image' %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+          <% end %>
+        <% elsif group_message.user.avater.attached? %>
+          <%= image_tag url_for(group_message.user.avater), size: '40x40' %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: '40x40' %>
+        <% end %>
+
+        <% if group_message.user != current_user %>
+          <p style="display: inline", class='chat-hukidasi'><%= group_message.content %></p>
+        <% else %>
+          <p style="display: inline", class='chat-hukidasi my-hukidasi'><%= group_message.content %></p>
+        <% end %>
+        <% if group_message.user == current_user %>
+          <div class="message-status">
+            <%= link_to '削除',  group_message_path(group_message), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </li>

@@ -1,0 +1,69 @@
+<%= form_with(model: @board, local: true) do |f| %>
+  <div class="errors">
+    <% if @board.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+
+        <ul>
+          <% board.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+<!-- Main navigation -->
+  <!-- Full Page Intro -->
+    <div class="view overlay rounded z-depth-1-half board-image">
+      <section style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zac_2.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class='back-image'>
+      <div class="mask pattern-5">
+      </div>
+    
+
+    <!-- Mask & flexbox options-->
+    <div class="d-flex justify-content-center align-items-center">
+      <!-- Content -->
+      <div class="container py-5 my-5">
+        
+        <p class="lead text-center white-text pt-2 mb-5"></p>
+        
+        <!--Grid row-->
+        <div class="row d-flex align-items-center justify-content-center">
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5">
+            <!--Form-->
+            <div class="card">
+              <div class="card-body z-depth-2 px-4 board-card">
+                <!-- Name -->
+                <div class="md-form mt-3">
+                  <i class="fas fa-pencil-alt prefix cyan-text "></i>
+                  <h3 class="font-weight-bold mb-3">Board New!</h3>
+                  <label for="board-form1">スレッド名</label>
+                  <%= f.text_field :title, autocomplete: "off", autofocus: "true", class: "form-control session-form", id: "board-form1" %>
+                </div>
+                <!-- password -->
+                <div class="md-form">
+                  <i class="fas fa-star prefix cyan-text"></i>
+                  <label for="board-form2">内容</label>
+                  <%= f.text_field :content, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
+                </div>
+                <div class="text-center my-3">
+                  <button class="btn btn-info btn-block my-4" type="submit">スレッド作成！</button>
+                </div>
+              </div>
+            </div>
+            <!--/.Form-->
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <br>
+    <!-- Mask & flexbox options-->
+    <br><br><br><br>
+  </section>
+  </div>
+  <!-- Full Page Intro -->
+<!-- Main navigation -->
+<% end %>

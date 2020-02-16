@@ -1,0 +1,73 @@
+<%= form_with(model: @group, local: true) do |form| %>
+  <% if @group.errors.any? %>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5>
+        <i class="icon fa fa-ban"></i>
+        <%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:
+      </h5>
+      <ul>
+        <% group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- Main navigation -->
+  <!-- Full Page Intro -->
+  <section style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_7.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;" class='back-image '>
+    <!-- Mask & flexbox options-->
+    <div class="mask d-flex justify-content-center align-items-center">
+      <!-- Content -->
+      <div class="container py-5 my-5 group-new-image"> 
+        
+        <p class="lead text-center white-text pt-2 mb-5"></p>
+        
+        <!--Grid row-->
+        <div class="row d-flex align-items-center justify-content-center">
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5">
+            <!--Form-->
+            <div class="card">
+              <div class="card-body z-depth-2 px-4 board-card">
+            <!-- グループ名 -->
+            <div class="md-form mt-3">
+              <h3 class="font-weight-bold text-center pb-2 ">New Group!</h3> 
+              <i class="fas fa-pencil-alt prefix purple-text "></i>
+              <label for="group-form1">グループ名</label>
+              <%= form.text_field :name, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+              <i class="fas fa-star prefix purple-text"></i>
+              <label for="board-form2">内容</label>
+              <%= form.text_field :introduction, autocomplete: "off", class: "form-control session-form", id: "board-form2" %>
+            </div>
+
+            <div class="md-form">
+              <i class="far fa-image prefix purple-text"></i>
+              <%= form.file_field :icon, autocomplete: "off", class: "session-form", id: "group_icon" %>
+            </div>
+                <div class="text-center my-3">
+                  <button class="btn btn-secondary btn-block my-4" type="submit">スレッド作成！</button>
+                </div>
+              </div>
+              </div>
+            </div>
+            <!--/.Form-->
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <br>
+    <!-- Mask & flexbox options-->
+    <br><br><br><br>
+  </section>
+  <!-- Full Page Intro -->
+<!-- Main navigation -->
+<% end %>
+

@@ -1,0 +1,45 @@
+  <li class="list-group-item ">
+    <% if message.user != current_user %>
+      <div>
+        <p><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
+    <% elsif %>
+      <div class="right">
+        <p class='my-message'><%= "#{message.user.name} 投稿時間：#{message.message_time}"%></p>
+    <% end %>
+
+      <div>
+        <% if message.user == current_user %>
+          <% if message.user.avater.attached? %>
+            <%= image_tag url_for(message.user.avater), size: '40x40', class: 'my-image' %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: '40x40', class: 'my-image' %>
+          <% end %>
+        <% elsif message.user.avater.attached? %>
+          <%= image_tag url_for(message.user.avater), size: '40x40' %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: '40x40' %>
+        <% end %>
+      
+        <% if message.user != current_user %>
+          <p class='chat-hukidasi'><%= message.content %></p>
+        <% else %>
+          <p class='chat-hukidasi my-hukidasi'><%= message.content %></p>
+        <% end %>
+        <% if message.user == current_user %>
+          <div class="message-status">
+            <%= link_to '削除',  message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= message.read ? '既読' : '未読' %>
+          </div>
+        <% end %>
+
+        <% sender_id ||= nil %>
+        <% if sender_id %>
+          <div class="message-status">
+            <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= message.read ? '既読' : '未読' %>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </li>

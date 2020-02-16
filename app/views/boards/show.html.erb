@@ -1,0 +1,21 @@
+<% if @over_ten %>
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<div class="container">
+  <h1><%= "#{@board.title}" %></h1>
+
+  <h2><%= "#{@board.content}" %></h2>
+  <div id ='responses'>
+    <ul class="list-group " id="responses-area">
+    <%= render @responses %>
+    </ul>
+  </div>
+
+  <form class='form-inline'>
+    <div class='form-group'>
+      <input type="text" class="form-control" id='response-input'/>
+    </div>
+    <button id="board-button" class="btn btn-primary">送信</button>
+  </form>
+</div>

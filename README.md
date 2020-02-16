@@ -46,3 +46,10 @@ https://cacoo.com/diagrams/JCloTT1Ttp59yc8W/EB842
 - faker
 - bootstrap
 - jquery-rails
+- gon
+- kaminari
+- ransack
+- rspec-rails
+- spring-commands-rspec
+- factory_bot_rails
+- launchy

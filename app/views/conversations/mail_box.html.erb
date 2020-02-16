@@ -1,0 +1,29 @@
+<div class="container my-5 py-5 z-depth-1 mail_box">
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+        <!--Grid column-->
+        <div class="">
+          <div class="row justify-content-center mail_box_title">
+          <%= "#{current_user.name}さんのメールボックス" %>
+        </div>
+          <br>
+
+          <% if @mymails.present? %>
+            <% @mymails.each do |m| %>
+            <br>
+              <%= link_to "#{m.target_user(current_user).name}さんとの会話", conversations_path(sender_id: current_user.id, recipient_id: m.target_user(current_user).id), method: :post %>
+              <% if @mail.where(conversation_id: m.id).present? %>
+                <div class='hukidasi'>
+                  <%= @mail.where(conversation_id: m.id).last.user.name  %>:
+                  <%= @mail.where(conversation_id: m.id).last.content.truncate(10, omission: '...') %>
+                </div>
+              <% end %>
+              <br>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>

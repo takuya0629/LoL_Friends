@@ -1,0 +1,22 @@
+<% if @over_ten %>
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<% if @group_message.errors.any? %>
+   <p>エラーでーす。</p>
+<% end %>
+
+<div class="container">
+  <h1>グループチャット</h1>
+  <div id ='group_messages'>
+    <ul class="list-group message-main" id='group_message-area'>
+    <%= render @group_messages %>
+    </ul>
+  </div>
+  <form class='form-inline'>
+    <div class='form-group'>
+      <input type="text" class="form-control" id='group-chat-input'/>
+    </div>
+    <button id="group-chat-button" class="btn btn-primary">送信</button>
+  </form>
+</div>

@@ -20,9 +20,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    if params[:user][:favorite_summoner].present?
+      check_account(params[:user][:favorite_summoner])
+    end
+
+    if @check_data.present? && @check_data['name'] == nil
+      flash[:danger] = "お気に入りサモナーのアカウントが存在しません"
+      return redirect_to edit_user_registration_path
+    end
+
+    resource_updated = update_resource(resource, account_update_params)
+    yield resource if block_given?
+
+    if resource_updated
+      set_flash_message_for_update(resource, prev_unconfirmed_email)
+      bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+
+      respond_with resource, location: after_update_path_for(resource)
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -39,6 +62,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   def detail
     @user = User.find_by(id: params[:id])
+
+    if @user.favorite_summoner.present?
+      summoner_data(@user.favorite_summoner)
+      profile_icon(@summoner_main_data)
+    end
+
   end
 
   protected
@@ -56,6 +85,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     "/user/#{current_user.id}"
+  end
+
+  def after_update_path_for(resource)
+    sign_in_after_change_password? ? user_path(current_user) : new_session_path(resource_name)
   end
 
   # The path used after sign up for inactive accounts.

@@ -1,0 +1,34 @@
+.mail_box {
+  background-color: lightgrey;
+}
+
+.mail_box_title{
+  color: currentColor;
+  font-weight: bold; /*太字に*/
+  font-size: 2em;
+}
+
+.hukidasi {
+display: inline-block; /*コメントの文字数に合わせて可変*/
+    padding: 15px 20px;
+    margin-left: 120px;
+    margin-top: 8px;
+    /* border: 1px solid gray; ←削除 */
+    border-radius: 10px;
+    position: relative; /*追記*/
+    background-color: #D9F0FF; /*追記*/
+}
+/* ↓追記↓ */
+.hukidasi:after {
+    content: "";
+    position: absolute;
+    top: 50%; left: -10px;
+    margin-top: -10px;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #D9F0FF transparent transparent;
+}
+
