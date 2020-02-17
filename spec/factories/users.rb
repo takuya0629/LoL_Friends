@@ -10,5 +10,6 @@ FactoryBot.define do
     name { 'test_2' }
     email { 'test2@aa.aa' }
     password { 'testtesttest2' }
+    confirmed_at { DateTime.now }
   end
 end
