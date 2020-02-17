@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   env = Dotenv.load
-  @@api = env['api']
+  @@api = env['API_KEY']
   
   # このアクションを追加
   def after_sign_in_path_for(resource)
