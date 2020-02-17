@@ -2,10 +2,10 @@
   <div class="errors">
     <% if @board.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+        <h2><%= pluralize(@board.errors.count, "error") %> エラーがあります</h2>
 
         <ul>
-          <% board.errors.full_messages.each do |message| %>
+          <% @board.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
