@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
     @responses = @board.responses.order(:created_at)
     # a = Board.last.responses.build(user_id: 1, content: 'aaa')
     
-    if @responses.length > 100
+    if @responses.length > 50
       @over_ten = true
       @responses = response.where(id: @responses[-10..-1].pluck(:id))
     end
@@ -35,7 +35,7 @@ class BoardsController < ApplicationController
     if params[:back]
       render :new 
     elsif @board.save
-      flash[:success] = '掲示板を作成しました' 
+      flash[:success] = 'スレッドを作成しました' 
       redirect_to @board 
     else
       render :new
@@ -43,7 +43,9 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    
+    @board.destroy
+    flash[:success] = 'スレッドを削除しました'
+    redirect_to boards_path
   end
 
   private

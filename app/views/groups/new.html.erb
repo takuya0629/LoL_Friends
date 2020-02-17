@@ -4,10 +4,10 @@
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       <h5>
         <i class="icon fa fa-ban"></i>
-        <%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:
+        <%= pluralize(@group.errors.count, "error") %> エラーがあります
       </h5>
       <ul>
-        <% group.errors.full_messages.each do |message| %>
+        <% @group.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
