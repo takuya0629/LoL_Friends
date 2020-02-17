@@ -17,8 +17,7 @@
                 <li class="card board-index"><%= link_to board.title, board, class: "btn btn-outline-secondary waves-effect" %>
                 <%= board.content.truncate(24, omission: '...') %>
                   <% if current_user.id == board.user_id %>
-                    <p><%= link_to 'Edit', edit_board_path(board) %>
-                    <%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                    <p><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></p>
                   <% end %>
                 </li>
                 <br>
