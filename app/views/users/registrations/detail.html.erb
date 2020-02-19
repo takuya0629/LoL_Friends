@@ -2,7 +2,7 @@
   <span>
   <% if @user.id != current_user.id %>
     <%= render 'follow_form', user: @user %>
-    <%= link_to( conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-outline-primary waves-effect" ) do %>
+    <%= link_to( conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-primary waves-effect" ) do %>
       <i class="fas fa-envelope"></i>メッセージを送る
     <% end %>
   <% elsif %>
