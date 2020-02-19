@@ -31,5 +31,7 @@ module LoLFriends
         request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end

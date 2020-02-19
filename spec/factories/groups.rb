@@ -5,4 +5,11 @@ FactoryBot.define do
     # インスタンスを渡さないといけない
     owner { owner }
   end
+
+  factory :approval_group, class: Group do
+    name { 'approval_group' }
+    introduction { 'introduction1' }
+    approval_system { true }
+    owner { owner }
+  end
 end
