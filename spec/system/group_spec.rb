@@ -36,12 +36,21 @@ RSpec.describe 'グループ機能', type: :system do
       end
     end
 
+    context 'グループチャット画面で' do 
+      it 'メッセージを入力し、送信ボタンを押したら反映される' do
+        visit group_group_messages_path(@group)
+        fill_in 'group-chat-input', with: 'group-message-test'
+        click_button '送信'
+
+        expect(page).to have_content 'group-message-test'
+      end
+    end
+
     context '削除ボタンを押した場合' do 
       it 'グループが削除される' do 
         visit edit_group_path(@group)
         click_link '削除'
         page.driver.browser.switch_to.alert.accept
-        sleep 5
 
         expect(page).to have_content 'グループを削除しました'
       end
@@ -61,18 +70,12 @@ RSpec.describe 'グループ機能', type: :system do
         visit group_path(@group3)
         click_link '加入申請をする'
         
-        
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content 'オーナーへ加入申請を送信しました'
       end
     end
   end
 end
-
-
-
-# current_user, @group, @group.judgements.find_by(user_id: current_user)
-
 
 
 
