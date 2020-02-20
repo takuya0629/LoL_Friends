@@ -47,9 +47,14 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group.destroy
-    flash[:success] = 'グループを削除しました'
-    redirect_to groups_url 
+    if current_user.id == @group.owner_id
+      @group.destroy
+      flash[:success] = 'グループを削除しました'
+      redirect_to groups_url 
+    else
+      flash[:danger] = 'あなたはこのグループのオーナーではありません。'
+      redirect_to groups_path 
+    end
   end
 
   def change_approval_system
