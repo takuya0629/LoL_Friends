@@ -8,20 +8,25 @@ class GroupMessagesController < ApplicationController
     gon.group = @group
     gon.avater = current_user.avater
 
-    if @group_messages.length > 10
+    if @group.join_group_users.find_by(id: current_user)
+      if @group_messages.length > 10
 
-      @over_ten = true
-      # @group_messages = @group_message.where(id: @group_messages.last(10).map{|msg| msg.id})
-      @group_messages = @group_messages.where(id: @group_messages[-10..-1].pluck(:id))
+        @over_ten = true
+        # @group_messages = @group_message.where(id: @group_messages.last(10).map{|msg| msg.id})
+        @group_messages = @group_messages.where(id: @group_messages[-10..-1].pluck(:id))
+      end
+
+      if params[:m]
+        @over_ten = false
+        @group_messages = @group.group_messages
+      end
+
+      @group_messages = @group_messages.order(:created_at)
+      @group_message = @group.group_messages.build
+    else
+      flash[:danger] = 'あなたはこのグループに参加していません'
+      redirect_to group_path(@group)
     end
-
-    if params[:m]
-      @over_ten = false
-      @group_messages = @group.group_messages
-    end
-
-    @group_messages = @group_messages.order(:created_at)
-    @group_message = @group.group_messages.build
   end
 
   def destroy
