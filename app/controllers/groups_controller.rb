@@ -23,7 +23,6 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.groups.build(group_params)
-    @group.owner = current_user
     if params[:back]
       render :new
     else
