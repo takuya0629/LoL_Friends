@@ -16,9 +16,13 @@ class JoinGroupsController < ApplicationController
   def destroy
     # @join_group = current_user.join_groups.find_by(group_id: @group)
     @join_group = JoinGroup.find(params[:id])
-    @join_group.destroy
-
-    flash[:warning] = 'グループを脱退しました。'
+    binding.irb
+    if current_user.id == @join_group.id
+      @join_group.destroy
+      flash[:success] = 'グループを脱退しました。'
+      redirect_to groups_path
+    else
+      flash[:danger] = '不正な値が入力されました。'
       redirect_to groups_path
   end
   
