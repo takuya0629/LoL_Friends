@@ -14,7 +14,6 @@ class JoinGroupsController < ApplicationController
   end
 
   def destroy
-    # @join_group = current_user.join_groups.find_by(group_id: @group)
     @join_group = JoinGroup.find(params[:id])
     if current_user.id == @join_group.user_id
       @join_group.destroy

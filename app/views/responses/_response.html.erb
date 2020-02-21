@@ -6,8 +6,7 @@
       <div class="right">
         <p class='my-message'><%= "#{response.user.name} 投稿時間：#{response.response_time}" %></p>
     <% end %>
-
-      <div>      
+      <div>
         <% if response.user == current_user %>
           <% if response.user.avater.attached? %>
             <%= image_tag url_for(response.user.avater), size: '40x40', class: 'my-image' %>
@@ -27,7 +26,7 @@
         <% end %>
         <% if response.user == current_user %>
           <div class="message-status">
-            <%= link_to '削除',  board_response_path(response), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '削除', response_path(response), method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         <% end %>
       </div>

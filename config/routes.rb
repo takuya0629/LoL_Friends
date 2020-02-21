@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get :join_group_deny, on: :member
   end 
   
-  resources :boards do 
+  resources :boards, shallow: true do
     resources :responses
   end
 

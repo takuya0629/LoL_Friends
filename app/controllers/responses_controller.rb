@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_board
+  
 
   def show
 
@@ -11,6 +11,7 @@ class ResponsesController < ApplicationController
 
   def destroy
     @response = Response.find(params[:id])
+    @board = @response.board
     @response.destroy
     flash[:success] = '投稿を削除しました'
     redirect_to board_path(@board)
@@ -20,9 +21,5 @@ class ResponsesController < ApplicationController
 
   def response_params
     params.require(:responses).permit(:content)
-  end
-
-  def set_board
-    @board = Board.find(params[:id])
   end
 end
