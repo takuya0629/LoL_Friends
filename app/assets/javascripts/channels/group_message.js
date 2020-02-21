@@ -6,9 +6,9 @@ document.addEventListener("turbolinks:load", function() {
     disconnected: function() {
     },
 
-    received: function(message) {
+    received: function(group_message) {
       const group_messages = document.getElementById('group_message-area')
-      messages.innerHTML += message
+      group_messages.innerHTML += group_message
     },
 
     speak: function(content) {

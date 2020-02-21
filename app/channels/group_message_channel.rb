@@ -1,6 +1,6 @@
 class GroupMessageChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "group_messages_channel"
+    stream_from "group_message_channel"
   end
 
   def unsubscribed
@@ -8,9 +8,18 @@ class GroupMessageChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    group_message = GroupMessage.create!(content: data['message'], group_id: data['group_id'], user_id: data['current_user']['id'])
+    group_message = GroupMessage.create!(content: data['message'], 
+                                        group_id: data['group_id'], 
+                                        user_id: data['current_user']['id'])
+
     current_user = data['current_user']
-    template = ApplicationController.renderer.render(partial: 'group_messages/group_message', locals: {message: message, current_user: data['current_user']})
+    template = ApplicationController.renderer
+                                    .render(partial: 'group_messages/group_message', 
+                                      locals: {
+                                      group_message: group_message, 
+                                      current_user: data['current_user']
+                                    })
+
     ActionCable.server.broadcast 'group_message_channel', template
   end
 end
