@@ -13,8 +13,8 @@
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: "nav-link active" %></li>
             <li><%= link_to "ユーザー検索", user_search_path, class: "nav-link active" %></li>
           <% elsif %>
-          <li><a class="nav-link" href="/users/sign_up">新規登録 </a></li>
-          <li><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          <li><a class="nav-link active" href="/users/sign_up">新規登録 </a></li>
+          <li><%= link_to "ログイン", new_user_session_path, class: "nav-link active" %></li>
 
         <% end %>
 
