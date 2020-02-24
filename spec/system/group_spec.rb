@@ -5,7 +5,6 @@ RSpec.describe 'グループ機能', type: :system do
     @user2 = FactoryBot.create(:user2)
     @user = FactoryBot.create(:user)
     @group = FactoryBot.create(:group, owner: @user)
-    @join_group = FactoryBot.create(group: @group, user: @user)
     visit user_session_path
     fill_in 'Your name', with: @user.name
     fill_in 'Your password', with: @user.password
@@ -39,8 +38,8 @@ RSpec.describe 'グループ機能', type: :system do
 
     context 'グループチャット画面で' do 
       it 'メッセージを入力し、送信ボタンを押したら反映される' do
+        @join_group = FactoryBot.create(:join_group, group_id: @group.id, user_id: @user.id)
         visit group_group_messages_path(@group)
-        binding.irb
         fill_in 'group-chat-input', with: 'group-message-test'
         click_button '送信'
 

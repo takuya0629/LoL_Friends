@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :join_group do
-    user { user }
-    group { group }
+    user_id { user }
+    group_id { group }
   end
 end
