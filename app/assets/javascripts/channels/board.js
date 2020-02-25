@@ -1,8 +1,8 @@
 document.addEventListener("turbolinks:load", function() {
   App.board = App.cable.subscriptions.create("BoardChannel", {
     connected: function() {
-      console.log('board')
     },
+    
     disconnected: function() {
     },
     received: function(response) {

@@ -1,7 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   App.room = App.cable.subscriptions.create("RoomChannel", {
     connected: function() {
-      console.log('connected')
     },
 
     disconnected: function() {
