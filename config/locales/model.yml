@@ -12,3 +12,9 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         password_digest: パスワード
+      group:
+        name: グループ名
+        introduction: 内容
+      board:
+        title: スレッド名
+        content: 内容

@@ -1,16 +1,18 @@
 <%= form_with(model: @board, local: true) do |f| %>
-  <div class="errors">
-    <% if @board.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@board.errors.count, "error") %> エラーがあります</h2>
-
-        <ul>
-          <% @board.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <% if @board.errors.any? %>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5>
+        <i class="icon fa fa-ban"></i>
+        <%= pluralize(@board.errors.count, "error") %> エラーがあります
+      </h5>
+      <ul>
+        <% @board.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <!-- Main navigation -->
   <!-- Full Page Intro -->
     <div class="view overlay rounded z-depth-1-half board-image">
