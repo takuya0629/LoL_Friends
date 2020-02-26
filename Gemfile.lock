@@ -68,6 +68,7 @@ GEM
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.0.1)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -128,6 +129,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
+    ed25519 (1.2.4)
     email_spec (2.2.0)
       htmlentities (~> 4.3.3)
       launchy (~> 2.1)
@@ -351,6 +353,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3
+  bcrypt_pbkdf
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
@@ -366,6 +369,7 @@ DEPENDENCIES
   database_cleaner
   devise
   dotenv-rails
+  ed25519
   email_spec (~> 2.2)
   factory_bot_rails
   faker
