@@ -92,12 +92,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: '54.227.161.126' }
+  config.action_mailer.default_url_options = { host: 'lolfriends.tokyo' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
-    domain: "54.227.161.126",
+    domain: "lolfriends.tokyo",
     address: "smtp.SendGrid.net",
     port: 587,
     authentication: :plain,
@@ -105,7 +105,7 @@ Rails.application.configure do
   }
 
   ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = 'ws://54.227.161.126/cable'
-  config.action_cable.allowed_request_origins = [ 'http://54.227.161.126' ]   
+  config.action_cable.url = 'ws://lolfriends.tokyo/cable'
+  config.action_cable.allowed_request_origins = [ 'lolfriends.tokyo' ]   
 
 end
