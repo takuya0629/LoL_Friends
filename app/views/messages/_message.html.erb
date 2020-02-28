@@ -35,7 +35,6 @@
         <% sender_id ||= nil %>
         <% if sender_id %>
           <div class="message-status">
-            <%= link_to '削除', message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %>
             <%= message.read ? '既読' : '未読' %>
           </div>
         <% end %>
