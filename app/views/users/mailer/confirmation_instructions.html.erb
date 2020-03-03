@@ -1,5 +1,7 @@
 <p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>この度は、LoL Friend'sへご登録いた頂き、誠にありがとうございます。</p>
+<p>現在、仮登録中です。</p>
+<p>以下のリンクからアカウントのメールを確認できます。</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
