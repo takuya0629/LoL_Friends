@@ -28,18 +28,18 @@
             </li>
 
           <% elsif %>
-          
+
             <li>
               <%= link_to new_user_registration_path, class: "nav-link active" do %>
                 <i class="fas fa-user-plus"> 新規登録</i>
               <% end %>
             </li>
 
-
-          
-          <li><%= link_to "ログイン", new_user_session_path, class: "nav-link active" %></li>
-
-
+            <li>
+              <%= link_to new_user_session_path, class: "nav-link active" do %>
+                <i class="fas fa-door-open"> ログイン</i>
+              <% end %>
+            </li>
         <% end %>
 
         <li class="nav-item dropdown">
