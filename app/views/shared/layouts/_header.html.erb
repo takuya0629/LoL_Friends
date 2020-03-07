@@ -9,12 +9,17 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active header-link">
           <% if user_signed_in? %>
-            <li><%= link_to "マイページ", user_path(current_user), class: "nav-link active" %></li>
+            <li>
+              <%= link_to user_path(current_user), class: "nav-link active" do %>
+                <i class="far fa-address-card"> マイページ</i>
+              <% end %>
+            </li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: "nav-link active" %></li>
             <li><%= link_to "ユーザー検索", user_search_path, class: "nav-link active" %></li>
           <% elsif %>
           <li><a class="nav-link active" href="/users/sign_up">新規登録 </a></li>
           <li><%= link_to "ログイン", new_user_session_path, class: "nav-link active" %></li>
+
 
         <% end %>
 
