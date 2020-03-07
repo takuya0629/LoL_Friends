@@ -21,6 +21,12 @@
               <% end %>
             </li>
 
+            <li>
+              <%= link_to user_search_path, class: "nav-link active" do %>
+                <i class="fas fa-search"> ユーザー検索</i>
+              <% end %>
+            </li>
+
             <li><%= link_to "ユーザー検索", user_search_path, class: "nav-link active" %></li>
           <% elsif %>
           <li><a class="nav-link active" href="/users/sign_up">新規登録 </a></li>
