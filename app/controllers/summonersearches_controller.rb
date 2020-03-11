@@ -1,5 +1,4 @@
 class SummonersearchesController < ApplicationController
-  before_action :authenticate_user!
 
   def search
     @summoner_name = params[:search]
