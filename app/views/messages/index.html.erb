@@ -4,6 +4,7 @@
 
 <div class="container">
   <h2 class="card chatroom-title"><%= "#{@conversation.target_user(current_user).name}さんとのchatroom" %></h2>
+  <br>
   <div id ='messages'>
     <ul class="list-group message-main" id='message-area'>
     <%= render @messages %>
