@@ -4,7 +4,6 @@
 
 <div class="container">
   <h2 class="card chatroom-title"><%= "#{@conversation.target_user(current_user).name}さんとのチャット" %></h2>
-  
   <div id ='messages'>
     <ul class="list-group message-main" id='message-area'>
     <%= render @messages %>
@@ -14,7 +13,10 @@
     <div class='form-group'>
       <input type="text" class="form-control" id='chat-input' autofocus/>
     </div>
+    <br><br><br><br>
     <button id="button" class="btn btn-primary">送信</button>
+
+
   </form>
 </div>
 
