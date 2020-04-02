@@ -1,11 +1,11 @@
 <% if @over_ten %>
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
-
+<br>
 <div class="container">
   <div class="card center-title">
     <h1><%= "#{@board.title}" %></h1>
-    <h2><%= "#{@board.content}" %></h2>
+    <h3><%= "#{@board.content}" %></h3>
   </div>
   <div id ='responses'>
     <ul class="list-group " id="responses-area">
