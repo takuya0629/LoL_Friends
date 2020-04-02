@@ -3,9 +3,10 @@
 <% end %>
 
 <div class="container">
-  <h1><%= "#{@board.title}" %></h1>
-
-  <h2><%= "#{@board.content}" %></h2>
+  <div class="card">
+    <h1><%= "#{@board.title}" %></h1>
+    <h2><%= "#{@board.content}" %></h2>
+  </div>
   <div id ='responses'>
     <ul class="list-group " id="responses-area">
     <%= render @responses %>
