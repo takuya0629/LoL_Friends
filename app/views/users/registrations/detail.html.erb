@@ -28,7 +28,7 @@
 <div class="container card mypage">
   <div class="row justify-content-center main_area">
     <div class="col-sm-5">
-      <%= "#{@user.name}さんのマイページです。" %>
+      <%= "#{@user.name}さんのマイページ" %>
       <br><br>
       <% if @user.avater.attached? %>
         <%= image_tag @user.avater, size: '350x350', class: "animated swing" %>
