@@ -86,7 +86,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
-gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'unicorn', '5.4.1' # アプリケーションサーバのunicorn
 gem 'mini_racer', platforms: :ruby # デプロイ時に必要
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
